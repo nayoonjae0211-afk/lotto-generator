@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="동물상 테스트 완벽 가이드 - 강아지상과 고양이상의 특징, AI 분석 원리, 재미있는 심리 해석까지">
+    <meta name="keywords" content="동물상 테스트, 강아지상, 고양이상, 얼굴 분석, AI 테스트, 관상">
+    <meta name="author" content="ProductBuilder">
+    <meta property="og:title" content="동물상 테스트 가이드 - ProductBuilder">
+    <meta property="og:description" content="강아지상 vs 고양이상 - 당신은 어떤 동물상일까요?">
+    <meta property="og:type" content="article">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <title>동물상 테스트 가이드 - 강아지상 vs 고양이상 | ProductBuilder</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #1a1a2e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f39c12;
+        }
+
+        h3 {
+            color: #1a1a2e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .animal-card {
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .dog-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-left: 5px solid #f39c12;
+        }
+
+        .cat-card {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-left: 5px solid #6c5ce7;
+        }
+
+        .animal-card h3 {
+            margin-top: 0;
+        }
+
+        .animal-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .trait-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .trait-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .trait-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .trait-item h4 {
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+
+        .trait-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .tech-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .tech-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .tech-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #f39c12;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .fun-fact {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .fun-fact h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">ProductBuilder</a>
+        <div class="nav-links">
+            <a href="index.html">로또 추첨기</a>
+            <a href="animal-test.html">동물상 테스트</a>
+            <a href="lotto-guide.html">로또 가이드</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">소개</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🐶🐱 동물상 테스트 가이드</h1>
+        <p class="subtitle">강아지상 vs 고양이상, 당신은 어떤 동물상일까요?</p>
+
+        <h2>동물상이란?</h2>
+        <p>동물상은 사람의 얼굴 특징이나 인상이 특정 동물을 닮았다고 표현하는 것입니다. 한국에서는 오랫동안 관상의 일종으로 재미있게 사용되어 왔으며, 최근에는 AI 기술을 활용한 동물상 테스트가 인기를 끌고 있습니다.</p>
+
+        <p>가장 대표적인 동물상으로는 <strong>강아지상</strong>과 <strong>고양이상</strong>이 있습니다. 각각 고유한 외모적 특징과 성격적 이미지를 가지고 있어, 많은 사람들이 자신이 어떤 동물상인지 궁금해합니다.</p>
+
+        <div class="dog-card animal-card">
+            <div class="emoji">🐶</div>
+            <h3>강아지상의 특징</h3>
+            <p>강아지상은 친근하고 밝은 인상을 주는 외모를 말합니다. 다음과 같은 특징을 가진 사람들이 강아지상으로 분류됩니다:</p>
+            <ul>
+                <li><strong>눈:</strong> 크고 둥근 눈, 초롱초롱한 눈빛</li>
+                <li><strong>얼굴형:</strong> 둥글거나 부드러운 윤곽</li>
+                <li><strong>표정:</strong> 밝고 활기찬 미소</li>
+                <li><strong>전체 인상:</strong> 순수하고 친근한 느낌</li>
+            </ul>
+        </div>
+
+        <div class="cat-card animal-card">
+            <div class="emoji">🐱</div>
+            <h3>고양이상의 특징</h3>
+            <p>고양이상은 세련되고 도도한 인상을 주는 외모를 말합니다. 다음과 같은 특징을 가진 사람들이 고양이상으로 분류됩니다:</p>
+            <ul>
+                <li><strong>눈:</strong> 길고 날카로운 눈매, 올라간 눈꼬리</li>
+                <li><strong>얼굴형:</strong> 갸름하고 각진 윤곽</li>
+                <li><strong>표정:</strong> 신비롭고 차분한 표정</li>
+                <li><strong>전체 인상:</strong> 도도하고 세련된 느낌</li>
+            </ul>
+        </div>
+
+        <h2>강아지상 vs 고양이상 비교</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>특성</th>
+                    <th>🐶 강아지상</th>
+                    <th>🐱 고양이상</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>눈</strong></td>
+                    <td>크고 둥근 눈</td>
+                    <td>길고 날카로운 눈</td>
+                </tr>
+                <tr>
+                    <td><strong>얼굴형</strong></td>
+                    <td>둥글고 부드러움</td>
+                    <td>갸름하고 각짐</td>
+                </tr>
+                <tr>
+                    <td><strong>인상</strong></td>
+                    <td>친근하고 밝음</td>
+                    <td>세련되고 신비로움</td>
+                </tr>
+                <tr>
+                    <td><strong>이미지 성격</strong></td>
+                    <td>활발, 사교적, 순수</td>
+                    <td>독립적, 도도, 카리스마</td>
+                </tr>
+                <tr>
+                    <td><strong>유명인 예시</strong></td>
+                    <td>박보영, 수지</td>
+                    <td>제니, 한소희</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>AI 동물상 분석 원리</h2>
+
+        <div class="tech-box">
+            <h3>🤖 Teachable Machine 기술</h3>
+            <p>저희 동물상 테스트는 Google의 Teachable Machine을 활용한 AI 이미지 분류 기술을 사용합니다. 수많은 강아지상/고양이상 이미지로 학습된 모델이 사용자의 얼굴 특징을 실시간으로 분석하여 결과를 제공합니다.</p>
+        </div>
+
+        <h3>분석 과정</h3>
+        <ol>
+            <li><strong>이미지 입력:</strong> 웹캠을 통해 실시간으로 얼굴 이미지를 캡처합니다.</li>
+            <li><strong>특징 추출:</strong> AI가 눈, 코, 입, 얼굴 윤곽 등의 특징을 분석합니다.</li>
+            <li><strong>패턴 매칭:</strong> 학습된 강아지상/고양이상 패턴과 비교합니다.</li>
+            <li><strong>결과 출력:</strong> 각 동물상에 대한 확률을 퍼센트로 표시합니다.</li>
+        </ol>
+
+        <div class="fun-fact">
+            <h4>💡 재미있는 사실</h4>
+            <p>동물상 테스트 결과는 조명, 표정, 각도에 따라 달라질 수 있습니다! 밝은 곳에서 정면을 바라보고 테스트하면 가장 정확한 결과를 얻을 수 있어요. 또한, 같은 사람도 표정에 따라 강아지상과 고양이상이 바뀔 수 있답니다.</p>
+        </div>
+
+        <h2>테스트 팁</h2>
+
+        <div class="trait-list">
+            <div class="trait-item">
+                <div class="icon">💡</div>
+                <h4>밝은 조명</h4>
+                <p>얼굴이 잘 보이는 밝은 곳에서 테스트하세요</p>
+            </div>
+            <div class="trait-item">
+                <div class="icon">📷</div>
+                <h4>정면 촬영</h4>
+                <p>카메라를 정면으로 바라보세요</p>
+            </div>
+            <div class="trait-item">
+                <div class="icon">😊</div>
+                <h4>자연스러운 표정</h4>
+                <p>편안하고 자연스러운 표정을 유지하세요</p>
+            </div>
+            <div class="trait-item">
+                <div class="icon">🔄</div>
+                <h4>여러 번 시도</h4>
+                <p>다양한 표정으로 여러 번 테스트해보세요</p>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h3>지금 바로 테스트해보세요!</h3>
+            <p>AI가 분석하는 나의 동물상, 강아지상일까 고양이상일까?</p>
+            <a href="animal-test.html" class="cta-btn">동물상 테스트 시작 →</a>
+        </div>
+
+        <h2>자주 묻는 질문</h2>
+
+        <h3>Q. 테스트 결과가 매번 다르게 나와요.</h3>
+        <p>정상입니다! 조명, 표정, 각도에 따라 결과가 달라질 수 있습니다. 일관된 조건에서 테스트하면 비슷한 결과를 얻을 수 있습니다.</p>
+
+        <h3>Q. 강아지상도 고양이상도 아닌 것 같아요.</h3>
+        <p>많은 사람들이 두 동물상의 특징을 모두 가지고 있습니다. 50:50에 가까운 결과가 나오면 혼합형이라고 볼 수 있어요!</p>
+
+        <h3>Q. 웹캠 권한을 허용해야 하나요?</h3>
+        <p>네, 실시간 얼굴 분석을 위해 웹캠 접근 권한이 필요합니다. 카메라 영상은 서버에 저장되지 않으며, 오직 분석 용도로만 사용됩니다.</p>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">로또 추첨기</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <p class="footer-copyright">© 2025 ProductBuilder. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

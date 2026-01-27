@@ -388,10 +388,63 @@
             color: var(--placeholder-color);
             font-size: 0.8rem;
         }
+
+        .nav {
+            background: var(--container-bg);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--subtitle-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .main-wrapper {
+            max-width: 500px;
+            width: 100%;
+        }
     </style>
 </head>
 <body data-theme="dark">
-    <div class="container">
+    <div class="main-wrapper">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">ProductBuilder</a>
+            <div class="nav-links">
+                <a href="lotto-guide.html">로또 가이드</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">소개</a>
+            </div>
+        </nav>
+        <div class="container">
         <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="테마 변경">🌙</button>
 
         <h1>🎱 로또 번호 추첨기</h1>
@@ -442,13 +495,16 @@
 
         <footer class="footer">
             <div class="footer-links">
-                <a href="about.html">사이트 소개</a>
+                <a href="lotto-guide.html">로또 가이드</a>
+                <a href="animal-guide.html">동물상 가이드</a>
+                <a href="about.html">소개</a>
                 <a href="privacy.html">개인정보처리방침</a>
                 <a href="terms.html">이용약관</a>
-                <a href="animal-test.html">동물상 테스트</a>
+                <a href="faq.html">FAQ</a>
             </div>
             <p class="footer-copyright">© 2025 ProductBuilder. All rights reserved.</p>
         </footer>
+        </div>
     </div>
 
     <script>

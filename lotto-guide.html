@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="로또 완벽 가이드 - 로또 규칙, 당첨 확률, 번호 선택 팁까지 모든 정보를 알려드립니다.">
+    <meta name="keywords" content="로또 규칙, 로또 확률, 로또 팁, 로또 당첨, 로또 번호 선택">
+    <meta name="author" content="ProductBuilder">
+    <meta property="og:title" content="로또 완벽 가이드 - ProductBuilder">
+    <meta property="og:description" content="로또의 모든 것 - 규칙부터 당첨 확률, 번호 선택 팁까지">
+    <meta property="og:type" content="article">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <title>로또 완벽 가이드 - 규칙, 확률, 팁 | ProductBuilder</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #1a1a2e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #6c5ce7;
+        }
+
+        h3 {
+            color: #1a1a2e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid #6c5ce7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box h4 {
+            color: #6c5ce7;
+            margin-bottom: 10px;
+        }
+
+        .probability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .probability-table th,
+        .probability-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .probability-table th {
+            background: #6c5ce7;
+            color: white;
+        }
+
+        .probability-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .ball-colors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .ball-color-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mini-ball {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .mini-ball.yellow { background: linear-gradient(135deg, #fbc531, #e1b12c); }
+        .mini-ball.blue { background: linear-gradient(135deg, #0097e6, #0984e3); }
+        .mini-ball.red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .mini-ball.gray { background: linear-gradient(135deg, #636e72, #4d5656); }
+        .mini-ball.green { background: linear-gradient(135deg, #00b894, #00a884); }
+
+        .cta-box {
+            background: linear-gradient(135deg, #6c5ce7, #a855f7);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #6c5ce7;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">ProductBuilder</a>
+        <div class="nav-links">
+            <a href="index.html">로또 추첨기</a>
+            <a href="animal-test.html">동물상 테스트</a>
+            <a href="lotto-guide.html">로또 가이드</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">소개</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🎱 로또 완벽 가이드</h1>
+        <p class="subtitle">로또의 모든 것을 알려드립니다</p>
+
+        <h2>로또 6/45란?</h2>
+        <p>로또 6/45는 대한민국에서 가장 인기 있는 복권 게임입니다. 1부터 45까지의 숫자 중 6개를 선택하여 추첨 번호와 일치하면 당첨되는 방식입니다. 매주 토요일 오후 8시 45분에 MBC에서 생방송으로 추첨이 진행됩니다.</p>
+
+        <div class="highlight-box">
+            <h4>기본 정보</h4>
+            <ul>
+                <li><strong>복권 가격:</strong> 1,000원 (1게임 기준)</li>
+                <li><strong>추첨일:</strong> 매주 토요일 오후 8시 45분</li>
+                <li><strong>판매 마감:</strong> 토요일 오후 8시</li>
+                <li><strong>당첨금 수령:</strong> 지급 개시일로부터 1년 이내</li>
+            </ul>
+        </div>
+
+        <h2>로또 번호 색상 의미</h2>
+        <p>로또 번호는 숫자 범위에 따라 다른 색상으로 표시됩니다. 이 색상은 시각적으로 번호를 쉽게 구분할 수 있도록 도와줍니다.</p>
+
+        <div class="ball-colors">
+            <div class="ball-color-item">
+                <div class="mini-ball yellow">5</div>
+                <span>1~10: 노란색</span>
+            </div>
+            <div class="ball-color-item">
+                <div class="mini-ball blue">15</div>
+                <span>11~20: 파란색</span>
+            </div>
+            <div class="ball-color-item">
+                <div class="mini-ball red">25</div>
+                <span>21~30: 빨간색</span>
+            </div>
+            <div class="ball-color-item">
+                <div class="mini-ball gray">35</div>
+                <span>31~40: 회색</span>
+            </div>
+            <div class="ball-color-item">
+                <div class="mini-ball green">45</div>
+                <span>41~45: 초록색</span>
+            </div>
+        </div>
+
+        <h2>당첨 등급과 확률</h2>
+        <p>로또 6/45의 당첨은 1등부터 5등까지 있으며, 각 등급별 당첨 조건과 확률은 다음과 같습니다.</p>
+
+        <table class="probability-table">
+            <thead>
+                <tr>
+                    <th>등급</th>
+                    <th>당첨 조건</th>
+                    <th>당첨 확률</th>
+                    <th>예상 당첨금</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1등</strong></td>
+                    <td>6개 번호 모두 일치</td>
+                    <td>1/8,145,060</td>
+                    <td>평균 20억원 이상</td>
+                </tr>
+                <tr>
+                    <td><strong>2등</strong></td>
+                    <td>5개 + 보너스 번호</td>
+                    <td>1/1,357,510</td>
+                    <td>평균 5천만원</td>
+                </tr>
+                <tr>
+                    <td><strong>3등</strong></td>
+                    <td>5개 번호 일치</td>
+                    <td>1/35,724</td>
+                    <td>평균 150만원</td>
+                </tr>
+                <tr>
+                    <td><strong>4등</strong></td>
+                    <td>4개 번호 일치</td>
+                    <td>1/733</td>
+                    <td>고정 5만원</td>
+                </tr>
+                <tr>
+                    <td><strong>5등</strong></td>
+                    <td>3개 번호 일치</td>
+                    <td>1/45</td>
+                    <td>고정 5천원</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>번호 선택 팁</h2>
+
+        <h3>1. 다양한 숫자 대역 선택</h3>
+        <p>1-10, 11-20, 21-30, 31-40, 41-45 다섯 개의 숫자 대역에서 골고루 선택하는 것이 좋습니다. 한 대역에 치우친 번호보다 분산된 번호가 통계적으로 더 자주 당첨됩니다.</p>
+
+        <h3>2. 홀수와 짝수의 균형</h3>
+        <p>6개 번호 중 홀수와 짝수를 3:3 또는 4:2, 2:4 비율로 선택하세요. 모두 홀수이거나 모두 짝수인 조합은 당첨 빈도가 낮습니다.</p>
+
+        <h3>3. 연속 번호 주의</h3>
+        <p>1-2-3-4-5-6과 같은 연속된 번호는 피하는 것이 좋습니다. 통계적으로 연속 번호가 3개 이상 나오는 경우는 드뭅니다.</p>
+
+        <h3>4. 인기 번호와 비인기 번호</h3>
+        <p>많은 사람들이 선택하는 번호(생일 관련 1-31, 행운의 숫자 7 등)는 당첨 시 당첨금을 나눠야 할 가능성이 높습니다. 비인기 번호도 고려해보세요.</p>
+
+        <div class="warning-box">
+            <h4>⚠️ 중요한 안내</h4>
+            <p>로또는 완전한 무작위 추첨이므로, 어떤 번호 선택 전략도 당첨 확률을 높일 수 없습니다. 위의 팁들은 참고용이며, 로또는 오락으로만 즐기시기 바랍니다. 과도한 복권 구매는 금전적 어려움을 초래할 수 있습니다.</p>
+        </div>
+
+        <h2>당첨금 수령 방법</h2>
+
+        <h3>5등 (5,000원)</h3>
+        <p>전국 로또 판매점에서 바로 수령 가능합니다.</p>
+
+        <h3>4등 (50,000원)</h3>
+        <p>농협 은행 지점에서 수령 가능합니다. 신분증을 지참하세요.</p>
+
+        <h3>3등 이상</h3>
+        <p>농협은행 본점에서 수령합니다. 당첨금이 3억원을 초과하면 세금(33%)이 원천징수됩니다.</p>
+
+        <div class="cta-box">
+            <h3>지금 바로 행운의 번호를 뽑아보세요!</h3>
+            <p>무료 로또 번호 추첨기로 오늘의 행운 번호를 확인해보세요.</p>
+            <a href="index.html" class="cta-btn">번호 추첨하기 →</a>
+        </div>
+
+        <h2>자주 하는 질문</h2>
+
+        <h3>Q. 로또 번호는 정말 무작위인가요?</h3>
+        <p>네, 로또 추첨은 공인된 기관의 감독 하에 완전한 무작위로 진행됩니다. 추첨기는 정기적으로 검사를 받으며, 각 번호가 나올 확률은 동일합니다.</p>
+
+        <h3>Q. 이전에 나온 번호는 다시 나올 수 있나요?</h3>
+        <p>네, 매 추첨은 독립적인 사건이므로 이전 당첨 번호와 동일한 번호가 나올 수 있습니다. 다만 확률적으로 매우 드문 경우입니다.</p>
+
+        <h3>Q. 로또 구매 나이 제한이 있나요?</h3>
+        <p>네, 만 19세 이상만 로또를 구매할 수 있습니다.</p>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">로또 추첨기</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <p class="footer-copyright">© 2025 ProductBuilder. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

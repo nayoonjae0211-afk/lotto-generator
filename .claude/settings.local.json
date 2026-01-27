@@ -10,7 +10,8 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(start https://nayoonjae0211-afk.github.io/lotto-generator)",
-      "Bash(start:*)"
+      "Bash(start:*)",
+      "WebFetch(domain:adsense-ko.googleblog.com)"
     ]
   }
 }
