@@ -330,6 +330,25 @@
             padding: 15px;
             transition: background 0.3s ease;
         }
+
+        .animal-test-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.3);
+        }
+
+        .animal-test-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -338,6 +357,7 @@
 
         <h1>🎱 로또 번호 추첨기</h1>
         <p class="subtitle">행운의 번호를 뽑아보세요!</p>
+        <a href="animal-test.html" class="animal-test-link">🐶🐱 동물상 테스트 하러가기 →</a>
 
         <div class="balls-container" id="balls">
             <span class="placeholder">버튼을 눌러 번호를 추첨하세요</span>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트 - 나는 강아지상? 고양이상?</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-gradient-1: #1a1a2e;
+            --bg-gradient-2: #16213e;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --title-color: #1a1a2e;
+            --subtitle-color: #666;
+            --border-color: #ddd;
+            --card-bg: #f8f9fa;
+        }
+
+        [data-theme="light"] {
+            --bg-gradient-1: #ffecd2;
+            --bg-gradient-2: #fcb69f;
+            --container-bg: rgba(255, 255, 255, 0.98);
+            --title-color: #1a1a2e;
+            --subtitle-color: #666;
+            --border-color: #ddd;
+            --card-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-1: #0d0d1a;
+            --bg-gradient-2: #1a1a2e;
+            --container-bg: rgba(30, 30, 50, 0.95);
+            --title-color: #ffffff;
+            --subtitle-color: #aaa;
+            --border-color: #444;
+            --card-bg: rgba(50, 50, 70, 0.8);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .container {
+            background: var(--container-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(128, 128, 128, 0.2);
+            transform: rotate(20deg);
+        }
+
+        h1 {
+            color: var(--title-color);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .subtitle {
+            color: var(--subtitle-color);
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .animal-icons {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #webcam-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #webcam-container canvas {
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6c5ce7, #a855f7);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-stop:hover {
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
+        }
+
+        .result-container {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .result-title {
+            color: var(--title-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .result-bar {
+            margin: 12px 0;
+        }
+
+        .result-label {
+            display: flex;
+            justify-content: space-between;
+            color: var(--subtitle-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background: var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .progress-fill.dog {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .progress-fill.cat {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .final-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .final-result.dog {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #d35400;
+        }
+
+        .final-result.cat {
+            background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+            color: #6c5ce7;
+        }
+
+        .loading {
+            color: var(--subtitle-color);
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--subtitle-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #6c5ce7;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="테마 변경">☀️</button>
+
+        <div class="animal-icons">🐶 VS 🐱</div>
+        <h1>동물상 테스트</h1>
+        <p class="subtitle">나는 강아지상일까? 고양이상일까?</p>
+
+        <div id="webcam-container"></div>
+
+        <div id="button-container">
+            <button class="btn" id="startBtn" onclick="init()">테스트 시작</button>
+        </div>
+
+        <p class="loading hidden" id="loading">모델을 불러오는 중...</p>
+
+        <div class="result-container hidden" id="result-container">
+            <div class="result-title">분석 결과</div>
+
+            <div class="result-bar">
+                <div class="result-label">
+                    <span>🐶 강아지상</span>
+                    <span id="dog-percent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill dog" id="dog-bar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="result-bar">
+                <div class="result-label">
+                    <span>🐱 고양이상</span>
+                    <span id="cat-percent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill cat" id="cat-bar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="final-result hidden" id="final-result"></div>
+        </div>
+
+        <a href="index.html" class="back-link">← 로또 번호 추첨기로 돌아가기</a>
+    </div>
+
+    <script>
+        const URL = "https://teachablemachine.withgoogle.com/models/odLETC9kc/";
+        let model, webcam, maxPredictions;
+        let isRunning = false;
+
+        // 테마 관련
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.getElementById('themeBtn');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+            btn.title = theme === 'dark' ? '라이트 모드로 변경' : '다크 모드로 변경';
+        }
+
+        async function init() {
+            const startBtn = document.getElementById('startBtn');
+            const loading = document.getElementById('loading');
+            const resultContainer = document.getElementById('result-container');
+
+            startBtn.disabled = true;
+            startBtn.textContent = '로딩 중...';
+            loading.classList.remove('hidden');
+
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                const flip = true;
+                webcam = new tmImage.Webcam(280, 280, flip);
+                await webcam.setup();
+                await webcam.play();
+
+                isRunning = true;
+                window.requestAnimationFrame(loop);
+
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+                loading.classList.add('hidden');
+                resultContainer.classList.remove('hidden');
+
+                startBtn.textContent = '테스트 중지';
+                startBtn.classList.add('btn-stop');
+                startBtn.disabled = false;
+                startBtn.onclick = stop;
+
+            } catch (error) {
+                console.error('Error:', error);
+                loading.textContent = '카메라 접근이 필요합니다. 권한을 허용해주세요.';
+                startBtn.disabled = false;
+                startBtn.textContent = '다시 시도';
+            }
+        }
+
+        function stop() {
+            if (webcam) {
+                webcam.stop();
+                isRunning = false;
+
+                const webcamContainer = document.getElementById('webcam-container');
+                webcamContainer.innerHTML = '';
+
+                const startBtn = document.getElementById('startBtn');
+                startBtn.textContent = '다시 테스트';
+                startBtn.classList.remove('btn-stop');
+                startBtn.onclick = init;
+            }
+        }
+
+        async function loop() {
+            if (!isRunning) return;
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+
+            let dogProb = 0;
+            let catProb = 0;
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const className = prediction[i].className.toLowerCase();
+                const probability = prediction[i].probability;
+
+                if (className.includes('dog') || className.includes('강아지')) {
+                    dogProb = probability;
+                } else if (className.includes('cat') || className.includes('고양이')) {
+                    catProb = probability;
+                }
+            }
+
+            // 첫 번째가 강아지, 두 번째가 고양이라고 가정 (모델 구조에 따라)
+            if (dogProb === 0 && catProb === 0) {
+                dogProb = prediction[0].probability;
+                catProb = prediction[1] ? prediction[1].probability : 0;
+            }
+
+            updateResults(dogProb, catProb);
+        }
+
+        function updateResults(dogProb, catProb) {
+            const dogPercent = Math.round(dogProb * 100);
+            const catPercent = Math.round(catProb * 100);
+
+            document.getElementById('dog-percent').textContent = dogPercent + '%';
+            document.getElementById('cat-percent').textContent = catPercent + '%';
+            document.getElementById('dog-bar').style.width = dogPercent + '%';
+            document.getElementById('cat-bar').style.width = catPercent + '%';
+
+            const finalResult = document.getElementById('final-result');
+            finalResult.classList.remove('hidden', 'dog', 'cat');
+
+            if (dogProb > catProb) {
+                finalResult.classList.add('dog');
+                finalResult.innerHTML = '🐶 당신은 <strong>강아지상</strong>입니다!';
+            } else {
+                finalResult.classList.add('cat');
+                finalResult.innerHTML = '🐱 당신은 <strong>고양이상</strong>입니다!';
+            }
+        }
+
+        initTheme();
+    </script>
+</body>
+</html>
