@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProductBuilder 소개 - 재미있는 웹 서비스를 제공합니다">
+    <title>사이트 소개 - ProductBuilder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #1a1a2e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #6c5ce7;
+        }
+
+        .service-card h3 {
+            color: #6c5ce7;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            margin-bottom: 10px;
+        }
+
+        .service-card a {
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .service-card a:hover {
+            text-decoration: underline;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .value-item .emoji {
+            font-size: 2.5rem;
+        }
+
+        .value-item h4 {
+            color: #1a1a2e;
+            margin: 10px 0;
+        }
+
+        .value-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ProductBuilder 소개</h1>
+
+        <p class="intro">ProductBuilder는 누구나 쉽고 재미있게 사용할 수 있는 웹 서비스를 제공합니다.</p>
+
+        <h2>제공 서비스</h2>
+
+        <div class="service-card">
+            <span class="emoji">🎱</span>
+            <h3>로또 번호 추첨기</h3>
+            <p>행운의 로또 번호를 무작위로 추첨해보세요! 1부터 45까지의 숫자 중 6개의 메인 번호와 1개의 보너스 번호를 생성합니다. 추첨 기록도 확인할 수 있어요.</p>
+            <a href="index.html">서비스 이용하기 →</a>
+        </div>
+
+        <div class="service-card">
+            <span class="emoji">🐶🐱</span>
+            <h3>동물상 테스트</h3>
+            <p>AI 기술을 활용하여 당신의 얼굴이 강아지상인지 고양이상인지 분석해드립니다. 웹캠을 통해 실시간으로 결과를 확인해보세요!</p>
+            <a href="animal-test.html">테스트 하러가기 →</a>
+        </div>
+
+        <h2>우리의 가치</h2>
+        <div class="values">
+            <div class="value-item">
+                <span class="emoji">🎯</span>
+                <h4>간편함</h4>
+                <p>복잡한 회원가입 없이 누구나 바로 이용 가능</p>
+            </div>
+            <div class="value-item">
+                <span class="emoji">🎨</span>
+                <h4>디자인</h4>
+                <p>깔끔하고 직관적인 사용자 인터페이스</p>
+            </div>
+            <div class="value-item">
+                <span class="emoji">🌙</span>
+                <h4>편의성</h4>
+                <p>다크모드/라이트모드 지원으로 편안한 사용</p>
+            </div>
+            <div class="value-item">
+                <span class="emoji">🆓</span>
+                <h4>무료</h4>
+                <p>모든 서비스를 무료로 제공</p>
+            </div>
+        </div>
+
+        <h2>기술 스택</h2>
+        <p>ProductBuilder는 최신 웹 기술을 활용하여 개발되었습니다:</p>
+        <ul style="margin-left: 20px; line-height: 2;">
+            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+            <li>TensorFlow.js - AI/머신러닝</li>
+            <li>Teachable Machine - 이미지 분류 모델</li>
+            <li>Cloudflare Pages - 호스팅</li>
+            <li>Formspree - 문의 양식</li>
+            <li>Disqus - 댓글 시스템</li>
+        </ul>
+
+        <h2>문의하기</h2>
+        <p>제휴 문의, 건의사항, 버그 리포트 등은 메인 페이지 하단의 제휴 문의 양식을 통해 연락해 주세요. 빠른 시일 내에 답변드리겠습니다.</p>
+
+        <a href="index.html" class="back-link">← 메인으로 돌아가기</a>
+    </div>
+</body>
+</html>

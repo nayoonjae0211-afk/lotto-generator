@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 추첨기</title>
+    <meta name="description" content="무료 로또 번호 추첨기 - 행운의 번호를 무작위로 뽑아보세요! 동물상 테스트도 함께 즐겨보세요.">
+    <meta name="keywords" content="로또, 로또번호, 번호추첨, 로또추첨기, 동물상테스트, 무료게임">
+    <meta name="author" content="ProductBuilder">
+    <meta property="og:title" content="로또 번호 추첨기 - ProductBuilder">
+    <meta property="og:description" content="무료 로또 번호 추첨기 - 행운의 번호를 무작위로 뽑아보세요!">
+    <meta property="og:type" content="website">
+    <title>로또 번호 추첨기 - ProductBuilder</title>
     <style>
         * {
             margin: 0;
@@ -349,6 +355,37 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
         }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--subtitle-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #6c5ce7;
+        }
+
+        .footer-copyright {
+            color: var(--placeholder-color);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -400,6 +437,16 @@
             <h3>💬 댓글</h3>
             <div id="disqus_thread"></div>
         </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+                <a href="animal-test.html">동물상 테스트</a>
+            </div>
+            <p class="footer-copyright">© 2025 ProductBuilder. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
