@@ -310,6 +310,26 @@
         .btn-submit:active {
             transform: translateY(0);
         }
+
+        .comments-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .comments-section h3 {
+            color: var(--title-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        #disqus_thread {
+            background: var(--history-bg);
+            border-radius: 10px;
+            padding: 15px;
+            transition: background 0.3s ease;
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -354,6 +374,11 @@
                 </div>
                 <button type="submit" class="btn-submit">문의 보내기</button>
             </form>
+        </div>
+
+        <div class="comments-section">
+            <h3>💬 댓글</h3>
+            <div id="disqus_thread"></div>
         </div>
     </div>
 
@@ -470,5 +495,20 @@
         // 페이지 로드 시 테마 초기화
         initTheme();
     </script>
+
+    <!-- Disqus 댓글 -->
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'https://nayoonjae0211-afk.github.io/lotto-generator/';
+            this.page.identifier = 'lotto-generator';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://productbuilder-zhc8dsntab.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </body>
 </html>
