@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추첨기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .balls-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0;
+            min-height: 70px;
+        }
+
+        .ball {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pop 0.3s ease-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .ball.yellow { background: linear-gradient(135deg, #fbc531, #e1b12c); }
+        .ball.blue { background: linear-gradient(135deg, #0097e6, #0984e3); }
+        .ball.red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .ball.gray { background: linear-gradient(135deg, #636e72, #4d5656); }
+        .ball.green { background: linear-gradient(135deg, #00b894, #00a884); }
+
+        .bonus-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .bonus-label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .bonus-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6c5ce7, #a855f7);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .history {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .history h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            gap: 6px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .history-item .ball {
+            width: 32px;
+            height: 32px;
+            font-size: 0.8rem;
+        }
+
+        .history-item .plus {
+            color: #666;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .placeholder {
+            color: #aaa;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎱 로또 번호 추첨기</h1>
+        <p class="subtitle">행운의 번호를 뽑아보세요!</p>
+
+        <div class="balls-container" id="balls">
+            <span class="placeholder">버튼을 눌러 번호를 추첨하세요</span>
+        </div>
+
+        <div class="bonus-section">
+            <p class="bonus-label">보너스 번호</p>
+            <div class="bonus-container" id="bonus">
+                <span class="placeholder">-</span>
+            </div>
+        </div>
+
+        <button class="btn" onclick="drawLotto()">번호 추첨</button>
+
+        <div class="history" id="historySection" style="display: none;">
+            <h3>📋 추첨 기록</h3>
+            <div class="history-list" id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+        let history = [];
+
+        function getRandomNumbers() {
+            const numbers = [];
+            while (numbers.length < 7) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers;
+        }
+
+        function getBallColor(num) {
+            if (num <= 10) return 'yellow';
+            if (num <= 20) return 'blue';
+            if (num <= 30) return 'red';
+            if (num <= 40) return 'gray';
+            return 'green';
+        }
+
+        function createBall(num, delay = 0) {
+            const ball = document.createElement('div');
+            ball.className = `ball ${getBallColor(num)}`;
+            ball.textContent = num;
+            ball.style.animationDelay = `${delay}ms`;
+            return ball;
+        }
+
+        function drawLotto() {
+            const ballsContainer = document.getElementById('balls');
+            const bonusContainer = document.getElementById('bonus');
+
+            ballsContainer.innerHTML = '';
+            bonusContainer.innerHTML = '';
+
+            const numbers = getRandomNumbers();
+            const mainNumbers = numbers.slice(0, 6).sort((a, b) => a - b);
+            const bonusNumber = numbers[6];
+
+            mainNumbers.forEach((num, index) => {
+                setTimeout(() => {
+                    ballsContainer.appendChild(createBall(num));
+                }, index * 100);
+            });
+
+            setTimeout(() => {
+                bonusContainer.appendChild(createBall(bonusNumber));
+            }, 700);
+
+            // 기록 저장
+            history.unshift({ main: mainNumbers, bonus: bonusNumber });
+            if (history.length > 10) history.pop();
+            updateHistory();
+        }
+
+        function updateHistory() {
+            const historySection = document.getElementById('historySection');
+            const historyList = document.getElementById('historyList');
+
+            if (history.length > 1) {
+                historySection.style.display = 'block';
+                historyList.innerHTML = '';
+
+                history.slice(1).forEach((item, index) => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+
+                    item.main.forEach(num => {
+                        const ball = createBall(num);
+                        ball.style.animation = 'none';
+                        historyItem.appendChild(ball);
+                    });
+
+                    const plus = document.createElement('span');
+                    plus.className = 'plus';
+                    plus.textContent = '+';
+                    historyItem.appendChild(plus);
+
+                    const bonusBall = createBall(item.bonus);
+                    bonusBall.style.animation = 'none';
+                    historyItem.appendChild(bonusBall);
+
+                    historyList.appendChild(historyItem);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
