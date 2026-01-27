@@ -11,36 +11,95 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-gradient-1: #1a1a2e;
+            --bg-gradient-2: #16213e;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --title-color: #1a1a2e;
+            --subtitle-color: #666;
+            --border-color: #ddd;
+            --history-bg: #f8f9fa;
+            --placeholder-color: #aaa;
+        }
+
+        [data-theme="light"] {
+            --bg-gradient-1: #e8f4f8;
+            --bg-gradient-2: #d4e5ed;
+            --container-bg: rgba(255, 255, 255, 0.98);
+            --title-color: #1a1a2e;
+            --subtitle-color: #666;
+            --border-color: #ddd;
+            --history-bg: #f8f9fa;
+            --placeholder-color: #aaa;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-1: #0d0d1a;
+            --bg-gradient-2: #1a1a2e;
+            --container-bg: rgba(30, 30, 50, 0.95);
+            --title-color: #ffffff;
+            --subtitle-color: #aaa;
+            --border-color: #444;
+            --history-bg: rgba(50, 50, 70, 0.8);
+            --placeholder-color: #777;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: background 0.3s ease;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--container-bg);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 500px;
             width: 100%;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(128, 128, 128, 0.2);
+            transform: rotate(20deg);
         }
 
         h1 {
-            color: #1a1a2e;
+            color: var(--title-color);
             margin-bottom: 10px;
             font-size: 2rem;
+            transition: color 0.3s ease;
         }
 
         .subtitle {
-            color: #666;
+            color: var(--subtitle-color);
             margin-bottom: 30px;
             font-size: 0.9rem;
+            transition: color 0.3s ease;
         }
 
         .balls-container {
@@ -90,13 +149,15 @@
         .bonus-section {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 2px dashed #ddd;
+            border-top: 2px dashed var(--border-color);
+            transition: border-color 0.3s ease;
         }
 
         .bonus-label {
-            color: #666;
+            color: var(--subtitle-color);
             font-size: 0.85rem;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .bonus-container {
@@ -132,9 +193,10 @@
         }
 
         .history h3 {
-            color: #1a1a2e;
+            color: var(--title-color);
             margin-bottom: 15px;
             font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
         .history-list {
@@ -146,11 +208,12 @@
             display: flex;
             gap: 6px;
             padding: 10px;
-            background: #f8f9fa;
+            background: var(--history-bg);
             border-radius: 10px;
             margin-bottom: 8px;
             align-items: center;
             flex-wrap: wrap;
+            transition: background 0.3s ease;
         }
 
         .history-item .ball {
@@ -160,19 +223,23 @@
         }
 
         .history-item .plus {
-            color: #666;
+            color: var(--subtitle-color);
             font-weight: bold;
             margin: 0 5px;
+            transition: color 0.3s ease;
         }
 
         .placeholder {
-            color: #aaa;
+            color: var(--placeholder-color);
             font-size: 1rem;
+            transition: color 0.3s ease;
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
     <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="테마 변경">🌙</button>
+
         <h1>🎱 로또 번호 추첨기</h1>
         <p class="subtitle">행운의 번호를 뽑아보세요!</p>
 
@@ -197,6 +264,27 @@
 
     <script>
         let history = [];
+
+        // 테마 초기화
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const btn = document.getElementById('themeBtn');
+            btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+            btn.title = theme === 'dark' ? '라이트 모드로 변경' : '다크 모드로 변경';
+        }
 
         function getRandomNumbers() {
             const numbers = [];
@@ -283,6 +371,9 @@
                 });
             }
         }
+
+        // 페이지 로드 시 테마 초기화
+        initTheme();
     </script>
 </body>
 </html>
