@@ -234,6 +234,82 @@
             font-size: 1rem;
             transition: color 0.3s ease;
         }
+
+        .contact-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .contact-section h3 {
+            color: var(--title-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--subtitle-color);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: var(--history-bg);
+            color: var(--title-color);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6c5ce7;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #00b894, #00a884);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -259,6 +335,25 @@
         <div class="history" id="historySection" style="display: none;">
             <h3>📋 추첨 기록</h3>
             <div class="history-list" id="historyList"></div>
+        </div>
+
+        <div class="contact-section">
+            <h3>🤝 제휴 문의</h3>
+            <form class="contact-form" action="https://formspree.io/f/xzdrkjze" method="POST">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" required placeholder="이메일을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="message">문의 내용</label>
+                    <textarea id="message" name="message" required placeholder="제휴 문의 내용을 입력하세요"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">문의 보내기</button>
+            </form>
         </div>
     </div>
 
