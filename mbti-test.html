@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="간단한 12문항으로 알아보는 MBTI 성격 유형 테스트. 나의 성격 유형은? E/I, S/N, T/F, J/P 성향을 분석해보세요.">
+    <meta name="keywords" content="MBTI 테스트, 성격 유형, 심리 테스트, MBTI 무료, 성격 분석, 16가지 성격">
+    <meta name="author" content="FunTest Korea">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <meta property="og:title" content="MBTI 간이 테스트 - 나의 성격 유형 알아보기">
+    <meta property="og:description" content="12문항으로 빠르게 알아보는 MBTI 성격 유형 테스트">
+    <meta property="og:type" content="website">
+    <title>MBTI 간이 테스트 - 나의 성격 유형은? | FunTest Korea</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* 테스트 인트로 */
+        .intro-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .intro-feature {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .intro-feature .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .intro-feature h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .intro-feature p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* 테스트 영역 */
+        .test-container {
+            display: none;
+        }
+
+        .test-container.active {
+            display: block;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 18px 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f0ff;
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        /* 시작 버튼 */
+        .start-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* 결과 화면 */
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-type {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .result-name {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .result-description {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .result-description h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .result-description p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .result-traits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .trait-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .trait-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .trait-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .trait-card li {
+            color: #555;
+            padding: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .trait-card li::before {
+            content: "✓ ";
+            color: #667eea;
+        }
+
+        .compatibility {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .compatibility h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .compat-types {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .compat-badge {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .retry-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .share-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .share-btn:hover {
+            background: #f0f0ff;
+        }
+
+        /* MBTI 설명 섹션 */
+        .info-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .info-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .dimension-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .dimension-table th,
+        .dimension-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .dimension-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .dimension-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .type-badge.e { background: #ffeaa7; color: #856404; }
+        .type-badge.i { background: #81ecec; color: #0c5460; }
+        .type-badge.s { background: #fab1a0; color: #721c24; }
+        .type-badge.n { background: #a29bfe; color: #2d1b69; }
+        .type-badge.t { background: #74b9ff; color: #004085; }
+        .type-badge.f { background: #fd79a8; color: #721c24; }
+        .type-badge.j { background: #55efc4; color: #155724; }
+        .type-badge.p { background: #ffeaa7; color: #856404; }
+
+        /* 16가지 유형 그리드 */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .type-cell {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .type-cell:hover {
+            transform: scale(1.05);
+        }
+
+        .type-cell .type-name {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* 광고 영역 */
+        .ad-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .result-type {
+                font-size: 3rem;
+            }
+
+            .result-traits {
+                grid-template-columns: 1fr;
+            }
+
+            .types-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">FunTest Korea</a>
+        <div class="nav-links">
+            <a href="index.html">홈</a>
+            <a href="animal-test.html">동물상 테스트</a>
+            <a href="lotto.html">로또 추첨기</a>
+            <a href="color-test.html">색깔 심리</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>MBTI 간이 테스트</h1>
+        <p class="subtitle">12개의 질문으로 빠르게 알아보는 나의 성격 유형<br>약 3분 소요</p>
+
+        <!-- 인트로 섹션 -->
+        <div class="intro-section" id="introSection">
+            <h2>MBTI란 무엇인가요?</h2>
+            <p>MBTI(Myers-Briggs Type Indicator)는 캐서린 쿡 브릭스와 이사벨 브릭스 마이어스가 칼 융의 심리 유형론을 바탕으로 개발한 성격 유형 지표입니다. 4가지 선호 지표의 조합으로 총 16가지 성격 유형을 분류합니다.</p>
+
+            <div class="intro-features">
+                <div class="intro-feature">
+                    <div class="icon">12</div>
+                    <h4>12문항</h4>
+                    <p>핵심 질문만 엄선</p>
+                </div>
+                <div class="intro-feature">
+                    <div class="icon">3</div>
+                    <h4>3분 소요</h4>
+                    <p>빠른 테스트 진행</p>
+                </div>
+                <div class="intro-feature">
+                    <div class="icon">16</div>
+                    <h4>16가지 유형</h4>
+                    <p>정확한 유형 분석</p>
+                </div>
+                <div class="intro-feature">
+                    <div class="icon">100%</div>
+                    <h4>무료</h4>
+                    <p>회원가입 불필요</p>
+                </div>
+            </div>
+
+            <button class="start-btn" onclick="startTest()">테스트 시작하기</button>
+        </div>
+
+        <!-- 테스트 영역 -->
+        <div class="test-container" id="testContainer">
+            <div class="progress-text">질문 <span id="currentQ">1</span> / 12</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 8.33%"></div>
+            </div>
+
+            <!-- 질문들 -->
+            <div class="question-card active" data-question="1">
+                <div class="question-number">Q1. 에너지 방향 (E/I)</div>
+                <div class="question-text">파티나 모임에 참석했을 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="E" onclick="selectOption(this, 1)">여러 사람과 대화하며 에너지를 얻는다</button>
+                    <button class="option-btn" data-type="I" onclick="selectOption(this, 1)">소수의 친한 사람과 깊은 대화를 선호한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="2">
+                <div class="question-number">Q2. 에너지 방향 (E/I)</div>
+                <div class="question-text">주말에 충전이 필요할 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="E" onclick="selectOption(this, 2)">친구들과 만나거나 활동적인 일을 한다</button>
+                    <button class="option-btn" data-type="I" onclick="selectOption(this, 2)">집에서 혼자만의 시간을 보낸다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="3">
+                <div class="question-number">Q3. 에너지 방향 (E/I)</div>
+                <div class="question-text">새로운 환경에서 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="E" onclick="selectOption(this, 3)">먼저 다가가서 사람들과 친해진다</button>
+                    <button class="option-btn" data-type="I" onclick="selectOption(this, 3)">상대방이 다가올 때까지 관찰한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="4">
+                <div class="question-number">Q4. 인식 기능 (S/N)</div>
+                <div class="question-text">문제를 해결할 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="S" onclick="selectOption(this, 4)">검증된 방법과 경험을 바탕으로 해결한다</button>
+                    <button class="option-btn" data-type="N" onclick="selectOption(this, 4)">새로운 방법과 가능성을 탐색한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="5">
+                <div class="question-number">Q5. 인식 기능 (S/N)</div>
+                <div class="question-text">대화할 때 나는 주로...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="S" onclick="selectOption(this, 5)">구체적인 사실과 세부사항에 집중한다</button>
+                    <button class="option-btn" data-type="N" onclick="selectOption(this, 5)">전체적인 맥락과 의미에 집중한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="6">
+                <div class="question-number">Q6. 인식 기능 (S/N)</div>
+                <div class="question-text">미래에 대해 생각할 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="S" onclick="selectOption(this, 6)">현실적이고 달성 가능한 목표를 세운다</button>
+                    <button class="option-btn" data-type="N" onclick="selectOption(this, 6)">다양한 가능성과 비전을 상상한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="7">
+                <div class="question-number">Q7. 판단 기능 (T/F)</div>
+                <div class="question-text">중요한 결정을 내릴 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="T" onclick="selectOption(this, 7)">논리와 객관적인 분석을 우선시한다</button>
+                    <button class="option-btn" data-type="F" onclick="selectOption(this, 7)">관계와 사람들의 감정을 고려한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="8">
+                <div class="question-number">Q8. 판단 기능 (T/F)</div>
+                <div class="question-text">친구가 고민을 털어놓을 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="T" onclick="selectOption(this, 8)">해결책과 조언을 제시하려 한다</button>
+                    <button class="option-btn" data-type="F" onclick="selectOption(this, 8)">공감하고 감정적으로 지지해준다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="9">
+                <div class="question-number">Q9. 판단 기능 (T/F)</div>
+                <div class="question-text">비판을 받았을 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="T" onclick="selectOption(this, 9)">내용이 타당한지 분석하고 받아들인다</button>
+                    <button class="option-btn" data-type="F" onclick="selectOption(this, 9)">상대방의 의도와 감정을 먼저 생각한다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="10">
+                <div class="question-number">Q10. 생활 양식 (J/P)</div>
+                <div class="question-text">여행을 갈 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="J" onclick="selectOption(this, 10)">세부 일정을 미리 계획하고 예약한다</button>
+                    <button class="option-btn" data-type="P" onclick="selectOption(this, 10)">대략적인 방향만 정하고 즉흥적으로 움직인다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="11">
+                <div class="question-number">Q11. 생활 양식 (J/P)</div>
+                <div class="question-text">일을 처리할 때, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="J" onclick="selectOption(this, 11)">마감 기한 전에 미리미리 끝낸다</button>
+                    <button class="option-btn" data-type="P" onclick="selectOption(this, 11)">마감 직전에 집중력이 높아진다</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="12">
+                <div class="question-number">Q12. 생활 양식 (J/P)</div>
+                <div class="question-text">갑작스러운 계획 변경이 생기면, 나는...</div>
+                <div class="options">
+                    <button class="option-btn" data-type="J" onclick="selectOption(this, 12)">당황스럽고 스트레스를 받는다</button>
+                    <button class="option-btn" data-type="P" onclick="selectOption(this, 12)">새로운 상황이 흥미롭고 적응이 빠르다</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 영역 -->
+        <div class="result-container" id="resultContainer">
+            <div class="result-type" id="resultType">ENFP</div>
+            <div class="result-name" id="resultName">재기발랄한 활동가</div>
+
+            <div class="result-description" id="resultDesc">
+                <h3>당신의 성격 특성</h3>
+                <p id="resultText"></p>
+            </div>
+
+            <div class="result-traits">
+                <div class="trait-card">
+                    <h4>강점</h4>
+                    <ul id="strengthsList"></ul>
+                </div>
+                <div class="trait-card">
+                    <h4>약점</h4>
+                    <ul id="weaknessesList"></ul>
+                </div>
+            </div>
+
+            <div class="compatibility">
+                <h3>잘 맞는 유형</h3>
+                <div class="compat-types" id="compatTypes"></div>
+            </div>
+
+            <button class="retry-btn" onclick="retryTest()">다시 테스트하기</button>
+            <button class="share-btn" onclick="shareResult()">결과 공유하기</button>
+        </div>
+
+        <!-- 광고 영역 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- MBTI 정보 섹션 -->
+        <div class="info-section">
+            <h2>MBTI 4가지 선호 지표</h2>
+
+            <table class="dimension-table">
+                <thead>
+                    <tr>
+                        <th>지표</th>
+                        <th>유형 1</th>
+                        <th>유형 2</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>에너지 방향</strong></td>
+                        <td><span class="type-badge e">E 외향</span></td>
+                        <td><span class="type-badge i">I 내향</span></td>
+                        <td>에너지를 얻는 방향 (외부 vs 내부)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>인식 기능</strong></td>
+                        <td><span class="type-badge s">S 감각</span></td>
+                        <td><span class="type-badge n">N 직관</span></td>
+                        <td>정보를 수집하는 방식 (구체적 vs 추상적)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>판단 기능</strong></td>
+                        <td><span class="type-badge t">T 사고</span></td>
+                        <td><span class="type-badge f">F 감정</span></td>
+                        <td>결정을 내리는 기준 (논리 vs 가치)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>생활 양식</strong></td>
+                        <td><span class="type-badge j">J 판단</span></td>
+                        <td><span class="type-badge p">P 인식</span></td>
+                        <td>외부 세계에 대한 태도 (계획적 vs 유연)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>16가지 MBTI 성격 유형</h2>
+            <div class="types-grid">
+                <div class="type-cell"><div>ISTJ</div><div class="type-name">청렴결백한 논리주의자</div></div>
+                <div class="type-cell"><div>ISFJ</div><div class="type-name">용감한 수호자</div></div>
+                <div class="type-cell"><div>INFJ</div><div class="type-name">선의의 옹호자</div></div>
+                <div class="type-cell"><div>INTJ</div><div class="type-name">용의주도한 전략가</div></div>
+                <div class="type-cell"><div>ISTP</div><div class="type-name">만능 재주꾼</div></div>
+                <div class="type-cell"><div>ISFP</div><div class="type-name">호기심 많은 예술가</div></div>
+                <div class="type-cell"><div>INFP</div><div class="type-name">열정적인 중재자</div></div>
+                <div class="type-cell"><div>INTP</div><div class="type-name">논리적인 사색가</div></div>
+                <div class="type-cell"><div>ESTP</div><div class="type-name">모험을 즐기는 사업가</div></div>
+                <div class="type-cell"><div>ESFP</div><div class="type-name">자유로운 영혼의 연예인</div></div>
+                <div class="type-cell"><div>ENFP</div><div class="type-name">재기발랄한 활동가</div></div>
+                <div class="type-cell"><div>ENTP</div><div class="type-name">뜨거운 논쟁을 즐기는 변론가</div></div>
+                <div class="type-cell"><div>ESTJ</div><div class="type-name">엄격한 관리자</div></div>
+                <div class="type-cell"><div>ESFJ</div><div class="type-name">사교적인 외교관</div></div>
+                <div class="type-cell"><div>ENFJ</div><div class="type-name">정의로운 사회운동가</div></div>
+                <div class="type-cell"><div>ENTJ</div><div class="type-name">대담한 통솔자</div></div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>MBTI의 역사</h3>
+                    <p>MBTI는 1940년대 캐서린 쿡 브릭스와 그녀의 딸 이사벨 브릭스 마이어스가 개발했습니다. 칼 융의 심리 유형론을 실생활에 적용할 수 있도록 만든 도구로, 현재 전 세계에서 가장 널리 사용되는 성격 유형 검사 중 하나입니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>테스트 활용법</h3>
+                    <p>MBTI는 자기 이해와 타인 이해의 도구입니다. 직업 선택, 대인관계 개선, 팀 구성 등에 참고할 수 있지만, 사람을 단정짓는 틀로 사용해서는 안 됩니다. 성격은 고정된 것이 아니라 성장하고 변화할 수 있습니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>간이 테스트 안내</h3>
+                    <p>본 테스트는 12문항으로 구성된 간이 버전으로, 정식 MBTI 검사와는 차이가 있을 수 있습니다. 정확한 결과를 원하신다면 공인된 MBTI 전문가의 검사를 받아보시길 권장합니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>결과 해석 주의사항</h3>
+                    <p>MBTI 결과는 선호도를 나타낼 뿐, 능력이나 성향을 완전히 규정하지 않습니다. 같은 유형이라도 개인차가 있으며, 상황에 따라 다르게 행동할 수 있습니다. 결과를 참고하되 열린 마음으로 받아들이세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="lotto.html">로또 추첨기</a>
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="footer-copyright">© 2025 FunTest Korea. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // MBTI 유형별 데이터
+        const mbtiData = {
+            ISTJ: {
+                name: "청렴결백한 논리주의자",
+                description: "신뢰할 수 있고 책임감이 강한 ISTJ는 전통과 충성심을 중요시합니다. 체계적이고 조직적인 방식으로 일을 처리하며, 맡은 일은 반드시 완수합니다. 사실에 기반한 판단을 하고, 규칙과 절차를 존중합니다.",
+                strengths: ["책임감이 강함", "신뢰할 수 있음", "체계적임", "성실함"],
+                weaknesses: ["융통성 부족", "감정 표현 어려움", "변화에 저항적", "지나치게 엄격함"],
+                compatible: ["ESFP", "ESTP", "ISFJ", "ESTJ"]
+            },
+            ISFJ: {
+                name: "용감한 수호자",
+                description: "따뜻하고 헌신적인 ISFJ는 다른 사람들을 돌보는 것에서 기쁨을 느낍니다. 조용히 뒤에서 일하며, 안정과 조화를 추구합니다. 세심하게 타인의 필요를 파악하고, 실질적인 도움을 제공합니다.",
+                strengths: ["헌신적임", "배려심 깊음", "인내심 강함", "세심함"],
+                weaknesses: ["자기 희생적", "거절을 어려워함", "변화에 민감함", "과도한 걱정"],
+                compatible: ["ESFP", "ESTP", "ISTJ", "ESFJ"]
+            },
+            INFJ: {
+                name: "선의의 옹호자",
+                description: "통찰력 있고 이상주의적인 INFJ는 깊은 공감 능력을 가지고 있습니다. 의미 있는 삶을 추구하며, 다른 사람들이 잠재력을 발휘하도록 돕습니다. 복잡한 아이디어와 감정을 이해하는 능력이 뛰어납니다.",
+                strengths: ["통찰력 있음", "이상주의적", "공감능력 뛰어남", "창의적"],
+                weaknesses: ["완벽주의적", "예민함", "갈등 회피", "번아웃에 취약"],
+                compatible: ["ENFP", "ENTP", "INFP", "ENFJ"]
+            },
+            INTJ: {
+                name: "용의주도한 전략가",
+                description: "독립적이고 결단력 있는 INTJ는 장기적인 비전을 가지고 전략적으로 사고합니다. 지식에 대한 욕구가 강하고, 효율성을 중요시합니다. 복잡한 문제를 해결하는 능력이 뛰어납니다.",
+                strengths: ["전략적 사고", "독립적", "결단력 있음", "지적 호기심"],
+                weaknesses: ["오만해 보일 수 있음", "감정 표현 부족", "지나치게 비판적", "완벽주의"],
+                compatible: ["ENFP", "ENTP", "INTP", "ENTJ"]
+            },
+            ISTP: {
+                name: "만능 재주꾼",
+                description: "논리적이고 실용적인 ISTP는 손으로 무언가를 만들고 분석하는 것을 좋아합니다. 위기 상황에서 침착하게 대처하며, 문제 해결에 탁월합니다. 자유로운 영혼으로 규칙에 얽매이지 않습니다.",
+                strengths: ["문제 해결 능력", "침착함", "적응력 뛰어남", "실용적"],
+                weaknesses: ["감정 표현 부족", "약속에 어려움", "무뚝뚝해 보임", "예측 불가능"],
+                compatible: ["ESTJ", "ENTJ", "ESFJ", "ENFJ"]
+            },
+            ISFP: {
+                name: "호기심 많은 예술가",
+                description: "조용하고 친근한 ISFP는 현재를 살며 주변의 아름다움을 발견합니다. 예술적 감각이 뛰어나고, 자신만의 가치관을 중요시합니다. 갈등을 피하고 조화를 추구합니다.",
+                strengths: ["예술적 감각", "민감한 감수성", "충성스러움", "유연함"],
+                weaknesses: ["너무 과묵함", "갈등 회피", "장기 계획 어려움", "자기 비하 경향"],
+                compatible: ["ESTJ", "ENTJ", "ESFJ", "ENFJ"]
+            },
+            INFP: {
+                name: "열정적인 중재자",
+                description: "이상주의적이고 공감능력이 뛰어난 INFP는 깊은 가치관을 가지고 있습니다. 진정성을 추구하며, 사람들의 잠재력을 믿습니다. 창의적인 표현을 통해 자신을 드러냅니다.",
+                strengths: ["이상주의적", "창의적", "공감 능력", "열정적"],
+                weaknesses: ["비현실적", "자기 비판적", "감정 기복", "우유부단"],
+                compatible: ["ENFJ", "ENTJ", "INFJ", "ENFP"]
+            },
+            INTP: {
+                name: "논리적인 사색가",
+                description: "분석적이고 객관적인 INTP는 논리와 이론에 관심이 많습니다. 복잡한 문제를 분석하고 해결하는 것을 좋아하며, 지적 호기심이 끝이 없습니다. 독창적인 아이디어를 생각해냅니다.",
+                strengths: ["분석적", "독창적", "객관적", "개방적"],
+                weaknesses: ["현실감 부족", "감정 표현 어려움", "우유부단", "사회성 부족"],
+                compatible: ["ENTJ", "ESTJ", "ENFJ", "ESFJ"]
+            },
+            ESTP: {
+                name: "모험을 즐기는 사업가",
+                description: "에너지 넘치고 행동 지향적인 ESTP는 현재를 즐기며 살아갑니다. 위험을 감수하는 것을 두려워하지 않으며, 실용적인 해결책을 빠르게 찾습니다. 사교적이고 재치 있습니다.",
+                strengths: ["활동적", "실용적", "적응력 뛰어남", "관찰력 좋음"],
+                weaknesses: ["충동적", "참을성 부족", "규칙 무시", "감정 둔감"],
+                compatible: ["ISFJ", "ISTJ", "INFJ", "INTJ"]
+            },
+            ESFP: {
+                name: "자유로운 영혼의 연예인",
+                description: "활기차고 사교적인 ESFP는 삶을 축제처럼 살아갑니다. 사람들과 함께하는 것을 좋아하고, 분위기를 띄우는 재능이 있습니다. 현재의 즐거움을 추구하며, 유연하게 적응합니다.",
+                strengths: ["사교적", "낙관적", "실용적", "적응력 뛰어남"],
+                weaknesses: ["장기 계획 어려움", "집중력 부족", "비판에 민감", "충동적"],
+                compatible: ["ISFJ", "ISTJ", "INFJ", "INTJ"]
+            },
+            ENFP: {
+                name: "재기발랄한 활동가",
+                description: "열정적이고 창의적인 ENFP는 가능성을 보는 눈이 있습니다. 새로운 아이디어와 사람들에게 끌리며, 삶에서 의미를 찾습니다. 에너지가 넘치고 영감을 주는 존재입니다.",
+                strengths: ["열정적", "창의적", "사교적", "호기심 많음"],
+                weaknesses: ["집중력 부족", "계획성 부족", "과민감", "비현실적"],
+                compatible: ["INFJ", "INTJ", "INFP", "ENFJ"]
+            },
+            ENTP: {
+                name: "뜨거운 논쟁을 즐기는 변론가",
+                description: "지적이고 호기심 많은 ENTP는 토론과 논쟁을 즐깁니다. 혁신적인 해결책을 찾는 데 재능이 있으며, 관습에 도전하는 것을 두려워하지 않습니다. 빠른 사고와 재치를 가졌습니다.",
+                strengths: ["혁신적", "지적임", "적응력 뛰어남", "카리스마 있음"],
+                weaknesses: ["논쟁적", "규칙 무시", "집중력 부족", "둔감할 수 있음"],
+                compatible: ["INFJ", "INTJ", "INTP", "ENTJ"]
+            },
+            ESTJ: {
+                name: "엄격한 관리자",
+                description: "조직적이고 책임감 있는 ESTJ는 질서와 전통을 중요시합니다. 리더십을 발휘하며, 일을 효율적으로 관리합니다. 정직하고 직접적인 소통을 선호합니다.",
+                strengths: ["조직력 뛰어남", "책임감 강함", "리더십 있음", "신뢰할 수 있음"],
+                weaknesses: ["융통성 부족", "고집이 셈", "감정 표현 부족", "지나치게 엄격함"],
+                compatible: ["ISTP", "ISFP", "INTP", "INFP"]
+            },
+            ESFJ: {
+                name: "사교적인 외교관",
+                description: "따뜻하고 사교적인 ESFJ는 사람들을 돌보는 것을 좋아합니다. 조화를 추구하며, 다른 사람들의 필요를 먼저 생각합니다. 충성스럽고 헌신적인 친구입니다.",
+                strengths: ["따뜻함", "협력적", "충성스러움", "실용적"],
+                weaknesses: ["비판에 민감", "인정욕구 강함", "변화에 저항적", "갈등 회피"],
+                compatible: ["ISTP", "ISFP", "INTP", "INFP"]
+            },
+            ENFJ: {
+                name: "정의로운 사회운동가",
+                description: "카리스마 있고 영감을 주는 ENFJ는 사람들을 이끄는 능력이 있습니다. 타인의 성장을 돕는 것에서 보람을 느끼며, 이상적인 세상을 위해 노력합니다. 공감 능력이 뛰어납니다.",
+                strengths: ["카리스마 있음", "이타적", "공감 능력", "리더십 있음"],
+                weaknesses: ["지나치게 이상주의적", "자기 희생적", "비판에 민감", "우유부단"],
+                compatible: ["ISTP", "ISFP", "INFP", "INTP"]
+            },
+            ENTJ: {
+                name: "대담한 통솔자",
+                description: "자신감 있고 결단력 있는 ENTJ는 타고난 리더입니다. 효율성을 중요시하며, 목표를 향해 추진력 있게 나아갑니다. 전략적 사고와 장기적인 비전을 가지고 있습니다.",
+                strengths: ["리더십 뛰어남", "자신감 있음", "효율적", "전략적"],
+                weaknesses: ["지배적", "참을성 부족", "감정 둔감", "완벽주의"],
+                compatible: ["ISTP", "ISFP", "INTP", "INFP"]
+            }
+        };
+
+        // 점수 저장
+        let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+        let currentQuestion = 1;
+        let answers = {};
+
+        function startTest() {
+            document.getElementById('introSection').style.display = 'none';
+            document.getElementById('testContainer').classList.add('active');
+        }
+
+        function selectOption(button, questionNum) {
+            // 이전 선택 제거
+            const options = button.parentElement.querySelectorAll('.option-btn');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // 현재 선택
+            button.classList.add('selected');
+
+            // 점수 저장
+            const type = button.getAttribute('data-type');
+            answers[questionNum] = type;
+
+            // 0.5초 후 다음 질문으로
+            setTimeout(() => {
+                if (questionNum < 12) {
+                    goToQuestion(questionNum + 1);
+                } else {
+                    showResult();
+                }
+            }, 500);
+        }
+
+        function goToQuestion(num) {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`.question-card[data-question="${num}"]`).classList.add('active');
+
+            currentQuestion = num;
+            document.getElementById('currentQ').textContent = num;
+            document.getElementById('progressFill').style.width = `${(num / 12) * 100}%`;
+        }
+
+        function showResult() {
+            // 점수 계산
+            scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+            for (let q in answers) {
+                scores[answers[q]]++;
+            }
+
+            // MBTI 유형 결정
+            let mbtiType = '';
+            mbtiType += scores.E >= scores.I ? 'E' : 'I';
+            mbtiType += scores.S >= scores.N ? 'S' : 'N';
+            mbtiType += scores.T >= scores.F ? 'T' : 'F';
+            mbtiType += scores.J >= scores.P ? 'J' : 'P';
+
+            const data = mbtiData[mbtiType];
+
+            // 결과 표시
+            document.getElementById('testContainer').classList.remove('active');
+            document.getElementById('resultContainer').classList.add('active');
+
+            document.getElementById('resultType').textContent = mbtiType;
+            document.getElementById('resultName').textContent = data.name;
+            document.getElementById('resultText').textContent = data.description;
+
+            // 강점
+            const strengthsList = document.getElementById('strengthsList');
+            strengthsList.innerHTML = '';
+            data.strengths.forEach(s => {
+                const li = document.createElement('li');
+                li.textContent = s;
+                strengthsList.appendChild(li);
+            });
+
+            // 약점
+            const weaknessesList = document.getElementById('weaknessesList');
+            weaknessesList.innerHTML = '';
+            data.weaknesses.forEach(w => {
+                const li = document.createElement('li');
+                li.textContent = w;
+                weaknessesList.appendChild(li);
+            });
+
+            // 궁합
+            const compatTypes = document.getElementById('compatTypes');
+            compatTypes.innerHTML = '';
+            data.compatible.forEach(type => {
+                const badge = document.createElement('span');
+                badge.className = 'compat-badge';
+                badge.textContent = type;
+                compatTypes.appendChild(badge);
+            });
+        }
+
+        function retryTest() {
+            scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+            answers = {};
+            currentQuestion = 1;
+
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            document.getElementById('resultContainer').classList.remove('active');
+            document.getElementById('introSection').style.display = 'block';
+            document.getElementById('testContainer').classList.remove('active');
+
+            document.querySelectorAll('.question-card').forEach((card, i) => {
+                card.classList.toggle('active', i === 0);
+            });
+            document.getElementById('currentQ').textContent = '1';
+            document.getElementById('progressFill').style.width = '8.33%';
+        }
+
+        function shareResult() {
+            const type = document.getElementById('resultType').textContent;
+            const name = document.getElementById('resultName').textContent;
+            const text = `나의 MBTI 유형은 ${type} (${name})입니다!\n\nFunTest Korea에서 테스트해보세요!`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'MBTI 테스트 결과',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(text + '\n' + window.location.href);
+                alert('결과가 클립보드에 복사되었습니다!');
+            }
+        }
+
+        // 광고 로드
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch(e) {}
+    </script>
+</body>
+</html>

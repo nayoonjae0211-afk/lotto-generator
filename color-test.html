@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="색깔로 알아보는 나의 심리 상태! 지금 끌리는 색깔을 선택하고 현재 감정과 심리를 분석해보세요.">
+    <meta name="keywords" content="색깔 심리 테스트, 컬러 테스트, 색채 심리학, 심리 분석, 감정 테스트">
+    <meta name="author" content="FunTest Korea">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <meta property="og:title" content="색깔 심리 테스트 - 지금 끌리는 색깔은?">
+    <meta property="og:description" content="색깔 선택으로 알아보는 나의 현재 심리 상태">
+    <meta property="og:type" content="website">
+    <title>색깔 심리 테스트 - 당신의 마음을 읽어드립니다 | FunTest Korea</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* 인트로 섹션 */
+        .intro-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .color-wheel {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff6b6b, #feca57, #1dd1a1, #48dbfb,
+                #5f27cd, #ff6b6b
+            );
+            animation: rotate 10s linear infinite;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .start-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        /* 테스트 영역 */
+        .test-container {
+            display: none;
+        }
+
+        .test-container.active {
+            display: block;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            text-align: center;
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .color-btn {
+            aspect-ratio: 1;
+            border: 4px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .color-btn.selected {
+            border-color: #333;
+            transform: scale(1.05);
+        }
+
+        .color-btn .color-name {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.9);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .color-btn:hover .color-name {
+            opacity: 1;
+        }
+
+        /* 각 색상 버튼 */
+        .color-red { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
+        .color-orange { background: linear-gradient(135deg, #ffa502, #ff7f50); }
+        .color-yellow { background: linear-gradient(135deg, #feca57, #f39c12); }
+        .color-green { background: linear-gradient(135deg, #1dd1a1, #10ac84); }
+        .color-blue { background: linear-gradient(135deg, #48dbfb, #0abde3); }
+        .color-purple { background: linear-gradient(135deg, #a55eea, #8854d0); }
+        .color-pink { background: linear-gradient(135deg, #fd79a8, #e84393); }
+        .color-black { background: linear-gradient(135deg, #2d3436, #636e72); }
+        .color-white { background: linear-gradient(135deg, #f5f5f5, #dfe6e9); border: 2px solid #ddd; }
+
+        /* 결과 영역 */
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-color-display {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .result-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .result-card h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .trait-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .trait-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .trait-item h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .trait-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .advice-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .advice-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .advice-box p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+        }
+
+        .retry-btn, .share-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px;
+            border: none;
+        }
+
+        .retry-btn {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .share-btn {
+            background: white;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+
+        .retry-btn:hover, .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 색채 심리학 설명 */
+        .info-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .info-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .color-meanings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .color-meaning-card {
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+        }
+
+        .color-meaning-card h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-meaning-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .info-text {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-text h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .info-text p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* 광고 영역 */
+        .ad-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .color-options {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-meanings {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">FunTest Korea</a>
+        <div class="nav-links">
+            <a href="index.html">홈</a>
+            <a href="mbti-test.html">MBTI 테스트</a>
+            <a href="animal-test.html">동물상 테스트</a>
+            <a href="lotto.html">로또 추첨기</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>색깔 심리 테스트</h1>
+        <p class="subtitle">지금 이 순간, 당신의 마음이 끌리는 색깔은?<br>색깔로 현재 심리 상태를 분석해드립니다.</p>
+
+        <!-- 인트로 섹션 -->
+        <div class="intro-section" id="introSection">
+            <p>색채 심리학(Color Psychology)은 색이 인간의 감정과 행동에 미치는 영향을 연구하는 학문입니다. 우리가 무의식적으로 선택하는 색깔은 현재의 심리 상태, 감정, 욕구를 반영합니다.</p>
+
+            <div class="color-wheel"></div>
+
+            <p>직관적으로 끌리는 색깔을 선택해주세요. 너무 오래 고민하지 말고 첫 느낌을 따르세요!</p>
+
+            <button class="start-btn" onclick="startTest()">테스트 시작하기</button>
+        </div>
+
+        <!-- 테스트 영역 -->
+        <div class="test-container" id="testContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 33.33%"></div>
+            </div>
+
+            <!-- 질문 1 -->
+            <div class="question-card active" data-question="1">
+                <div class="question-text">Q1. 지금 이 순간, 가장 끌리는 색깔을 선택하세요.</div>
+                <div class="color-options">
+                    <button class="color-btn color-red" data-color="red" onclick="selectColor(this, 1)">
+                        <span class="color-name">빨강</span>
+                    </button>
+                    <button class="color-btn color-orange" data-color="orange" onclick="selectColor(this, 1)">
+                        <span class="color-name">주황</span>
+                    </button>
+                    <button class="color-btn color-yellow" data-color="yellow" onclick="selectColor(this, 1)">
+                        <span class="color-name">노랑</span>
+                    </button>
+                    <button class="color-btn color-green" data-color="green" onclick="selectColor(this, 1)">
+                        <span class="color-name">초록</span>
+                    </button>
+                    <button class="color-btn color-blue" data-color="blue" onclick="selectColor(this, 1)">
+                        <span class="color-name">파랑</span>
+                    </button>
+                    <button class="color-btn color-purple" data-color="purple" onclick="selectColor(this, 1)">
+                        <span class="color-name">보라</span>
+                    </button>
+                    <button class="color-btn color-pink" data-color="pink" onclick="selectColor(this, 1)">
+                        <span class="color-name">분홍</span>
+                    </button>
+                    <button class="color-btn color-black" data-color="black" onclick="selectColor(this, 1)">
+                        <span class="color-name">검정</span>
+                    </button>
+                    <button class="color-btn color-white" data-color="white" onclick="selectColor(this, 1)">
+                        <span class="color-name">흰색</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 질문 2 -->
+            <div class="question-card" data-question="2">
+                <div class="question-text">Q2. 마음이 편안해지는 색깔을 선택하세요.</div>
+                <div class="color-options">
+                    <button class="color-btn color-red" data-color="red" onclick="selectColor(this, 2)">
+                        <span class="color-name">빨강</span>
+                    </button>
+                    <button class="color-btn color-orange" data-color="orange" onclick="selectColor(this, 2)">
+                        <span class="color-name">주황</span>
+                    </button>
+                    <button class="color-btn color-yellow" data-color="yellow" onclick="selectColor(this, 2)">
+                        <span class="color-name">노랑</span>
+                    </button>
+                    <button class="color-btn color-green" data-color="green" onclick="selectColor(this, 2)">
+                        <span class="color-name">초록</span>
+                    </button>
+                    <button class="color-btn color-blue" data-color="blue" onclick="selectColor(this, 2)">
+                        <span class="color-name">파랑</span>
+                    </button>
+                    <button class="color-btn color-purple" data-color="purple" onclick="selectColor(this, 2)">
+                        <span class="color-name">보라</span>
+                    </button>
+                    <button class="color-btn color-pink" data-color="pink" onclick="selectColor(this, 2)">
+                        <span class="color-name">분홍</span>
+                    </button>
+                    <button class="color-btn color-black" data-color="black" onclick="selectColor(this, 2)">
+                        <span class="color-name">검정</span>
+                    </button>
+                    <button class="color-btn color-white" data-color="white" onclick="selectColor(this, 2)">
+                        <span class="color-name">흰색</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 질문 3 -->
+            <div class="question-card" data-question="3">
+                <div class="question-text">Q3. 에너지가 느껴지는 색깔을 선택하세요.</div>
+                <div class="color-options">
+                    <button class="color-btn color-red" data-color="red" onclick="selectColor(this, 3)">
+                        <span class="color-name">빨강</span>
+                    </button>
+                    <button class="color-btn color-orange" data-color="orange" onclick="selectColor(this, 3)">
+                        <span class="color-name">주황</span>
+                    </button>
+                    <button class="color-btn color-yellow" data-color="yellow" onclick="selectColor(this, 3)">
+                        <span class="color-name">노랑</span>
+                    </button>
+                    <button class="color-btn color-green" data-color="green" onclick="selectColor(this, 3)">
+                        <span class="color-name">초록</span>
+                    </button>
+                    <button class="color-btn color-blue" data-color="blue" onclick="selectColor(this, 3)">
+                        <span class="color-name">파랑</span>
+                    </button>
+                    <button class="color-btn color-purple" data-color="purple" onclick="selectColor(this, 3)">
+                        <span class="color-name">보라</span>
+                    </button>
+                    <button class="color-btn color-pink" data-color="pink" onclick="selectColor(this, 3)">
+                        <span class="color-name">분홍</span>
+                    </button>
+                    <button class="color-btn color-black" data-color="black" onclick="selectColor(this, 3)">
+                        <span class="color-name">검정</span>
+                    </button>
+                    <button class="color-btn color-white" data-color="white" onclick="selectColor(this, 3)">
+                        <span class="color-name">흰색</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 영역 -->
+        <div class="result-container" id="resultContainer">
+            <div class="result-color-display" id="resultColorDisplay"></div>
+            <div class="result-title" id="resultTitle">빨강</div>
+            <div class="result-subtitle" id="resultSubtitle">열정과 에너지의 색</div>
+
+            <div class="result-card">
+                <h3 id="resultEmoji">현재 심리 상태</h3>
+                <p id="resultDescription"></p>
+            </div>
+
+            <div class="traits-grid" id="traitsGrid"></div>
+
+            <div class="advice-box">
+                <h3>오늘의 조언</h3>
+                <p id="adviceText"></p>
+            </div>
+
+            <button class="retry-btn" onclick="retryTest()">다시 테스트하기</button>
+            <button class="share-btn" onclick="shareResult()">결과 공유하기</button>
+        </div>
+
+        <!-- 광고 영역 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- 색채 심리학 정보 -->
+        <div class="info-section">
+            <h2>색채 심리학이란?</h2>
+
+            <div class="info-text">
+                <h3>색이 우리에게 미치는 영향</h3>
+                <p>색채 심리학(Color Psychology)은 색이 인간의 감정, 행동, 인식에 미치는 영향을 연구하는 심리학의 한 분야입니다. 색은 단순한 시각적 요소를 넘어 우리의 기분, 식욕, 수면 패턴, 의사결정에까지 영향을 미칩니다.</p>
+                <p>마케팅, 인테리어, 패션, 치료 등 다양한 분야에서 색채 심리학이 활용되고 있으며, 우리가 무의식적으로 선택하는 색깔은 현재의 심리 상태와 욕구를 반영합니다.</p>
+            </div>
+
+            <h2>각 색깔의 의미</h2>
+
+            <div class="color-meanings">
+                <div class="color-meaning-card color-red">
+                    <h4>빨강 Red</h4>
+                    <p>열정, 에너지, 사랑, 흥분을 상징합니다. 심장 박동을 빠르게 하고 식욕을 자극합니다.</p>
+                </div>
+                <div class="color-meaning-card color-orange">
+                    <h4>주황 Orange</h4>
+                    <p>창의성, 열정, 모험을 상징합니다. 사교성을 높이고 긍정적인 감정을 유발합니다.</p>
+                </div>
+                <div class="color-meaning-card color-yellow" style="color: #333;">
+                    <h4>노랑 Yellow</h4>
+                    <p>희망, 낙관, 지성을 상징합니다. 정신을 자극하고 집중력을 높여줍니다.</p>
+                </div>
+                <div class="color-meaning-card color-green">
+                    <h4>초록 Green</h4>
+                    <p>자연, 균형, 성장을 상징합니다. 눈의 피로를 풀어주고 마음을 안정시킵니다.</p>
+                </div>
+                <div class="color-meaning-card color-blue">
+                    <h4>파랑 Blue</h4>
+                    <p>신뢰, 평화, 안정을 상징합니다. 심박수를 낮추고 차분한 감정을 유도합니다.</p>
+                </div>
+                <div class="color-meaning-card color-purple">
+                    <h4>보라 Purple</h4>
+                    <p>고귀함, 신비, 영성을 상징합니다. 상상력을 자극하고 명상에 도움을 줍니다.</p>
+                </div>
+                <div class="color-meaning-card color-pink">
+                    <h4>분홍 Pink</h4>
+                    <p>로맨스, 부드러움, 돌봄을 상징합니다. 공격성을 줄이고 편안함을 줍니다.</p>
+                </div>
+                <div class="color-meaning-card color-black">
+                    <h4>검정 Black</h4>
+                    <p>권위, 우아함, 힘을 상징합니다. 독립성과 자기 보호의 욕구를 나타냅니다.</p>
+                </div>
+            </div>
+
+            <div class="info-text">
+                <h3>테스트 결과 활용 팁</h3>
+                <p>색깔 심리 테스트 결과는 현재 순간의 감정 상태를 반영합니다. 같은 사람이라도 시간과 상황에 따라 끌리는 색깔이 달라질 수 있습니다.</p>
+                <p>결과를 참고하여 오늘 하루 그 색깔을 의식적으로 활용해보세요. 예를 들어, 에너지가 필요하다면 빨간색 소품을, 안정이 필요하다면 파란색이나 초록색 환경을 만들어보세요.</p>
+            </div>
+
+            <div class="info-text">
+                <h3>색채 테라피(Color Therapy)</h3>
+                <p>색채 테라피는 색의 에너지를 활용하여 신체적, 정신적 균형을 찾는 대체 치료법입니다. 고대 이집트, 그리스, 중국에서부터 색을 치료에 활용했다는 기록이 있습니다.</p>
+                <p>현대에는 조명, 그림, 옷, 음식 등을 통해 색을 일상에 적용하여 스트레스 해소, 기분 개선, 집중력 향상 등의 효과를 얻을 수 있습니다.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="mbti-test.html">MBTI 테스트</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="footer-copyright">© 2025 FunTest Korea. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 색상별 데이터
+        const colorData = {
+            red: {
+                name: "빨강",
+                subtitle: "열정과 에너지의 색",
+                gradient: "linear-gradient(135deg, #ff6b6b, #ee5a5a)",
+                emoji: "❤️",
+                description: "당신은 지금 강렬한 열정과 에너지로 가득 차 있습니다. 무언가를 향한 뜨거운 욕망이 있거나, 새로운 도전을 갈망하고 있을 수 있습니다. 빨강을 선택한 당신은 현재 자신감이 넘치고 적극적인 상태입니다. 때로는 이 에너지가 조급함이나 충동으로 나타날 수 있으니, 중요한 결정은 한 템포 쉬고 내리세요.",
+                traits: [
+                    { icon: "🔥", title: "열정적", desc: "뜨거운 에너지" },
+                    { icon: "💪", title: "자신감", desc: "당당한 태도" },
+                    { icon: "🎯", title: "목표지향적", desc: "명확한 의지" },
+                    { icon: "❤️", title: "강렬한 감정", desc: "깊은 사랑" }
+                ],
+                advice: "오늘은 미뤄왔던 일을 시작하기 좋은 날입니다. 당신의 열정을 행동으로 옮겨보세요. 다만, 다른 사람의 의견도 귀 기울여 들으면 더 좋은 결과를 얻을 수 있습니다."
+            },
+            orange: {
+                name: "주황",
+                subtitle: "창의성과 모험의 색",
+                gradient: "linear-gradient(135deg, #ffa502, #ff7f50)",
+                emoji: "🧡",
+                description: "당신은 지금 창의적인 에너지가 넘치고 새로운 것에 대한 호기심으로 가득합니다. 사람들과 어울리고 싶고, 재미있는 활동을 찾고 있을 수 있습니다. 주황을 선택한 당신은 긍정적이고 사교적인 상태입니다. 이 에너지를 활용해 새로운 취미나 관계를 시작해보세요.",
+                traits: [
+                    { icon: "🎨", title: "창의적", desc: "넘치는 아이디어" },
+                    { icon: "🤝", title: "사교적", desc: "따뜻한 관계" },
+                    { icon: "🎪", title: "모험심", desc: "새로운 도전" },
+                    { icon: "😊", title: "낙관적", desc: "밝은 시선" }
+                ],
+                advice: "오늘은 새로운 사람을 만나거나 창의적인 활동을 하기 좋은 날입니다. 당신의 밝은 에너지가 주변에 긍정적인 영향을 줄 것입니다. 즐거운 일을 계획해보세요!"
+            },
+            yellow: {
+                name: "노랑",
+                subtitle: "희망과 지성의 색",
+                gradient: "linear-gradient(135deg, #feca57, #f39c12)",
+                emoji: "💛",
+                description: "당신은 지금 밝고 희망적인 에너지를 가지고 있습니다. 새로운 아이디어가 떠오르거나 지적 호기심이 발동하는 상태일 수 있습니다. 노랑을 선택한 당신은 낙관적이고 명랑한 마음 상태입니다. 이 긍정 에너지를 학습이나 자기 계발에 활용해보세요.",
+                traits: [
+                    { icon: "☀️", title: "밝음", desc: "긍정 에너지" },
+                    { icon: "💡", title: "지적", desc: "호기심 충만" },
+                    { icon: "🌟", title: "희망적", desc: "미래 기대" },
+                    { icon: "😄", title: "쾌활함", desc: "밝은 성격" }
+                ],
+                advice: "오늘은 공부나 새로운 것을 배우기 좋은 날입니다. 당신의 밝은 에너지가 집중력을 높여줄 것입니다. 복잡한 문제도 긍정적으로 접근하면 해결책이 보일 거예요."
+            },
+            green: {
+                name: "초록",
+                subtitle: "균형과 치유의 색",
+                gradient: "linear-gradient(135deg, #1dd1a1, #10ac84)",
+                emoji: "💚",
+                description: "당신은 지금 마음의 평화와 균형을 찾고 싶어합니다. 자연과 가까워지고 싶거나, 바쁜 일상에서 휴식이 필요한 상태일 수 있습니다. 초록을 선택한 당신은 안정과 성장을 동시에 원하고 있습니다. 자신을 돌보는 시간을 가져보세요.",
+                traits: [
+                    { icon: "🌿", title: "자연친화", desc: "힐링 추구" },
+                    { icon: "⚖️", title: "균형", desc: "조화로움" },
+                    { icon: "🌱", title: "성장", desc: "발전 욕구" },
+                    { icon: "💆", title: "안정", desc: "평화로움" }
+                ],
+                advice: "오늘은 자연 속에서 시간을 보내거나 명상을 해보세요. 심호흡을 하며 마음을 정리하면 더 선명한 방향이 보일 것입니다. 균형 잡힌 식사도 잊지 마세요."
+            },
+            blue: {
+                name: "파랑",
+                subtitle: "신뢰와 평화의 색",
+                gradient: "linear-gradient(135deg, #48dbfb, #0abde3)",
+                emoji: "💙",
+                description: "당신은 지금 차분하고 안정적인 에너지를 가지고 있습니다. 신뢰할 수 있는 관계나 평화로운 환경을 원하고 있을 수 있습니다. 파랑을 선택한 당신은 이성적이고 집중력 있는 상태입니다. 중요한 결정이나 깊은 대화를 하기 좋은 때입니다.",
+                traits: [
+                    { icon: "🌊", title: "차분함", desc: "고요한 마음" },
+                    { icon: "🤝", title: "신뢰", desc: "믿음직함" },
+                    { icon: "🎯", title: "집중력", desc: "몰입 가능" },
+                    { icon: "💭", title: "사색적", desc: "깊은 생각" }
+                ],
+                advice: "오늘은 중요한 업무나 깊은 대화를 나누기 좋은 날입니다. 당신의 차분한 에너지가 상대방에게 신뢰감을 줄 것입니다. 물가 근처에서 시간을 보내면 더욱 마음이 맑아질 거예요."
+            },
+            purple: {
+                name: "보라",
+                subtitle: "신비와 영성의 색",
+                gradient: "linear-gradient(135deg, #a55eea, #8854d0)",
+                emoji: "💜",
+                description: "당신은 지금 내면의 세계와 영적인 성장에 관심을 가지고 있습니다. 창의적인 영감이 솟아나거나, 삶의 깊은 의미를 탐구하고 싶은 상태일 수 있습니다. 보라를 선택한 당신은 직관력이 높아진 상태입니다. 예술 활동이나 명상이 도움이 될 수 있습니다.",
+                traits: [
+                    { icon: "✨", title: "신비로움", desc: "특별한 매력" },
+                    { icon: "🔮", title: "직관력", desc: "예민한 감각" },
+                    { icon: "🎭", title: "창의성", desc: "예술적 감성" },
+                    { icon: "🧘", title: "영성", desc: "내면 탐구" }
+                ],
+                advice: "오늘은 예술 활동이나 명상을 해보세요. 당신의 직관을 믿고 따라가면 의외의 발견이 있을 수 있습니다. 꿈 일기를 쓰거나 창작 활동을 시도해보세요."
+            },
+            pink: {
+                name: "분홍",
+                subtitle: "사랑과 부드러움의 색",
+                gradient: "linear-gradient(135deg, #fd79a8, #e84393)",
+                emoji: "💗",
+                description: "당신은 지금 사랑과 돌봄을 원하고 있습니다. 로맨틱한 감정이 피어나거나, 누군가를 돌보고 싶은 마음이 있을 수 있습니다. 분홍을 선택한 당신은 부드럽고 따뜻한 에너지를 발산하고 있습니다. 사랑하는 사람과 시간을 보내세요.",
+                traits: [
+                    { icon: "💕", title: "로맨틱", desc: "사랑의 감정" },
+                    { icon: "🤗", title: "따뜻함", desc: "포근한 마음" },
+                    { icon: "🌸", title: "부드러움", desc: "섬세한 감성" },
+                    { icon: "💝", title: "돌봄", desc: "배려하는 마음" }
+                ],
+                advice: "오늘은 사랑하는 사람과 시간을 보내거나 자신을 위한 작은 선물을 해보세요. 따뜻한 차 한 잔과 함께 휴식을 취하는 것도 좋습니다. 당신의 사랑스러운 에너지를 나눠주세요."
+            },
+            black: {
+                name: "검정",
+                subtitle: "힘과 독립의 색",
+                gradient: "linear-gradient(135deg, #2d3436, #636e72)",
+                emoji: "🖤",
+                description: "당신은 지금 자신만의 공간과 독립성을 원하고 있습니다. 세상으로부터 잠시 물러나 자신을 보호하고 싶거나, 내면의 힘을 기르고 싶은 상태일 수 있습니다. 검정을 선택한 당신은 강한 의지와 결단력을 가지고 있습니다.",
+                traits: [
+                    { icon: "⚡", title: "권위", desc: "강한 존재감" },
+                    { icon: "🛡️", title: "보호", desc: "자기 방어" },
+                    { icon: "🏆", title: "독립성", desc: "자립심" },
+                    { icon: "💎", title: "우아함", desc: "세련됨" }
+                ],
+                advice: "오늘은 혼자만의 시간을 가지며 내면을 돌아보세요. 때로는 거절하는 것도 자신을 지키는 방법입니다. 스스로의 경계를 존중하면서 재충전하는 시간을 가져보세요."
+            },
+            white: {
+                name: "흰색",
+                subtitle: "순수와 새 시작의 색",
+                gradient: "linear-gradient(135deg, #f5f5f5, #dfe6e9)",
+                emoji: "🤍",
+                description: "당신은 지금 새로운 시작이나 정화를 원하고 있습니다. 복잡한 것들을 정리하고 단순하게 살고 싶거나, 깨끗한 상태로 다시 시작하고 싶은 마음이 있을 수 있습니다. 흰색을 선택한 당신은 맑고 순수한 에너지를 가지고 있습니다.",
+                traits: [
+                    { icon: "🕊️", title: "순수함", desc: "맑은 마음" },
+                    { icon: "🌅", title: "새 시작", desc: "리셋 욕구" },
+                    { icon: "✨", title: "정화", desc: "정리정돈" },
+                    { icon: "☁️", title: "평화", desc: "고요함" }
+                ],
+                advice: "오늘은 주변을 정리하거나 새로운 계획을 세우기 좋은 날입니다. 불필요한 것들을 정리하고 마음을 비워보세요. 깨끗한 공간에서 새로운 아이디어가 떠오를 수 있습니다."
+            }
+        };
+
+        let answers = {};
+
+        function startTest() {
+            document.getElementById('introSection').style.display = 'none';
+            document.getElementById('testContainer').classList.add('active');
+        }
+
+        function selectColor(button, questionNum) {
+            // 이전 선택 제거
+            const options = button.parentElement.querySelectorAll('.color-btn');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // 현재 선택
+            button.classList.add('selected');
+
+            // 답변 저장
+            const color = button.getAttribute('data-color');
+            answers[questionNum] = color;
+
+            // 다음 질문으로
+            setTimeout(() => {
+                if (questionNum < 3) {
+                    goToQuestion(questionNum + 1);
+                } else {
+                    showResult();
+                }
+            }, 500);
+        }
+
+        function goToQuestion(num) {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`.question-card[data-question="${num}"]`).classList.add('active');
+
+            document.getElementById('progressFill').style.width = `${(num / 3) * 100}%`;
+        }
+
+        function showResult() {
+            // 가장 많이 선택된 색상 찾기
+            const colorCount = {};
+            for (let q in answers) {
+                const color = answers[q];
+                colorCount[color] = (colorCount[color] || 0) + 1;
+            }
+
+            // 첫 번째 선택을 가중치로
+            let dominantColor = answers[1];
+            let maxCount = 1;
+
+            for (let color in colorCount) {
+                if (colorCount[color] > maxCount) {
+                    maxCount = colorCount[color];
+                    dominantColor = color;
+                }
+            }
+
+            const data = colorData[dominantColor];
+
+            // 결과 표시
+            document.getElementById('testContainer').classList.remove('active');
+            document.getElementById('resultContainer').classList.add('active');
+
+            document.getElementById('resultColorDisplay').style.background = data.gradient;
+            document.getElementById('resultTitle').textContent = data.name;
+            document.getElementById('resultSubtitle').textContent = data.subtitle;
+            document.getElementById('resultEmoji').innerHTML = data.emoji + ' 현재 심리 상태';
+            document.getElementById('resultDescription').textContent = data.description;
+            document.getElementById('adviceText').textContent = data.advice;
+
+            // 특성 표시
+            const traitsGrid = document.getElementById('traitsGrid');
+            traitsGrid.innerHTML = '';
+            data.traits.forEach(trait => {
+                const div = document.createElement('div');
+                div.className = 'trait-item';
+                div.innerHTML = `
+                    <div class="icon">${trait.icon}</div>
+                    <h4>${trait.title}</h4>
+                    <p>${trait.desc}</p>
+                `;
+                traitsGrid.appendChild(div);
+            });
+        }
+
+        function retryTest() {
+            answers = {};
+
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            document.getElementById('resultContainer').classList.remove('active');
+            document.getElementById('introSection').style.display = 'block';
+            document.getElementById('testContainer').classList.remove('active');
+
+            document.querySelectorAll('.question-card').forEach((card, i) => {
+                card.classList.toggle('active', i === 0);
+            });
+            document.getElementById('progressFill').style.width = '33.33%';
+        }
+
+        function shareResult() {
+            const color = document.getElementById('resultTitle').textContent;
+            const subtitle = document.getElementById('resultSubtitle').textContent;
+            const text = `나의 색깔 심리 결과: ${color} - ${subtitle}\n\nFunTest Korea에서 테스트해보세요!`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: '색깔 심리 테스트 결과',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(text + '\n' + window.location.href);
+                alert('결과가 클립보드에 복사되었습니다!');
+            }
+        }
+
+        // 광고 로드
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch(e) {}
+    </script>
+</body>
+</html>
