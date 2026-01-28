@@ -717,11 +717,14 @@
             playerSequence = [];
             canClick = false;
 
-            // 새로운 색상 추가
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            sequence.push(randomColor);
+            // 레벨에 맞는 개수만큼 완전히 새로운 랜덤 패턴 생성
+            sequence = [];
+            for (let i = 0; i < level; i++) {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                sequence.push(randomColor);
+            }
 
-            messageText.textContent = '패턴을 기억하세요!';
+            messageText.textContent = `${level}개의 패턴을 기억하세요!`;
             messageText.className = 'message-text';
 
             // 시퀀스 표시
