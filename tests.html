@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FunTest Korea 테스트 모음 - MBTI, 심리테스트, 성격테스트, 동물상 테스트 등 다양한 무료 테스트를 즐겨보세요.">
+    <meta name="keywords" content="심리테스트, MBTI, 성격테스트, 동물상테스트, 색깔테스트, 무료테스트">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <title>테스트 모음 - 모든 심리테스트 한눈에 | FunTest Korea</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6c5ce7;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 25px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #6c5ce7; }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        /* 광고 영역 */
+        .ad-container {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .test-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .test-card:hover {
+            transform: translateY(-5px);
+            border-color: #6c5ce7;
+            box-shadow: 0 15px 35px rgba(108,92,231,0.2);
+        }
+        .test-card .icon { font-size: 3rem; margin-bottom: 15px; }
+        .test-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #333; }
+        .test-card p { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 15px; }
+        .test-card .tag {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .tag.popular { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .tag.new { background: linear-gradient(135deg, #00b894, #00a884); }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .footer a { color: #a29bfe; text-decoration: none; margin: 0 10px; }
+        .footer a:hover { color: white; }
+        .footer p { margin-top: 15px; color: #888; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.6rem; }
+            .section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">FunTest Korea</a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="tests.html">테스트 모음</a>
+                <a href="games.html">게임</a>
+                <a href="blog.html">블로그</a>
+                <a href="about.html">소개</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>테스트 모음</h1>
+        <p>다양한 심리테스트, 성격테스트를 한 곳에서 만나보세요. 모든 테스트는 무료입니다!</p>
+    </section>
+
+    <div class="main-container">
+        <!-- 상단 광고 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- 성격/심리 테스트 -->
+        <section class="section">
+            <h2 class="section-title">🧠 성격 & 심리 테스트</h2>
+            <div class="test-grid">
+                <a href="mbti-test.html" class="test-card">
+                    <div class="icon">🧠</div>
+                    <h3>MBTI 간이 테스트</h3>
+                    <p>12문항으로 빠르게 알아보는 나의 MBTI 유형. 16가지 성격 유형 중 당신은?</p>
+                    <span class="tag popular">인기</span>
+                </a>
+                <a href="color-test.html" class="test-card">
+                    <div class="icon">🎨</div>
+                    <h3>색깔 심리 테스트</h3>
+                    <p>좋아하는 색깔로 알아보는 현재 심리 상태와 숨겨진 성격을 분석합니다.</p>
+                    <span class="tag new">NEW</span>
+                </a>
+                <a href="animal-test.html" class="test-card">
+                    <div class="icon">🐶🐱</div>
+                    <h3>동물상 테스트</h3>
+                    <p>AI가 분석하는 나의 동물상! 강아지상일까 고양이상일까?</p>
+                    <span class="tag popular">인기</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 중간 광고 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- 운세 & 재미 -->
+        <section class="section">
+            <h2 class="section-title">🔮 운세 & 재미</h2>
+            <div class="test-grid">
+                <a href="fortune.html" class="test-card">
+                    <div class="icon">🔮</div>
+                    <h3>오늘의 운세</h3>
+                    <p>생년월일로 알아보는 오늘의 총운, 애정운, 금전운, 건강운을 확인하세요.</p>
+                    <span class="tag">운세</span>
+                </a>
+                <a href="lotto.html" class="test-card">
+                    <div class="icon">🎱</div>
+                    <h3>로또 번호 추첨기</h3>
+                    <p>행운의 로또 번호를 무작위로 추첨해보세요. 번호별 색상과 기록 제공!</p>
+                    <span class="tag">추첨</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 하단 광고 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <a href="index.html">홈</a>
+            <a href="games.html">게임</a>
+            <a href="about.html">소개</a>
+            <a href="privacy.html">개인정보처리방침</a>
+            <a href="terms.html">이용약관</a>
+        </div>
+        <p>© 2025 FunTest Korea. All rights reserved.</p>
+    </footer>
+
+    <script>
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    </script>
+</body>
+</html>

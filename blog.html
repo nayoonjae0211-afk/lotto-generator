@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FunTest Korea 블로그 - 심리학, 성격 유형, 두뇌 과학에 관한 흥미로운 글을 읽어보세요.">
+    <meta name="keywords" content="심리학 블로그, MBTI 정보, 성격유형, 두뇌과학, 색채심리학">
+    <meta name="google-adsense-account" content="ca-pub-2267267544441832">
+    <title>블로그 - 심리학과 테스트 이야기 | FunTest Korea</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2267267544441832" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.98);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6c5ce7;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 25px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #6c5ce7; }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .ad-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            min-height: 100px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .article-list { display: flex; flex-direction: column; gap: 25px; }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        .article-content { padding: 30px; }
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .article-category {
+            background: #6c5ce7;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+        .article-card h2 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .article-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            color: #6c5ce7;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sidebar {
+            margin-top: 40px;
+        }
+        .sidebar-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .sidebar-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6c5ce7;
+        }
+        .sidebar-section ul { list-style: none; }
+        .sidebar-section li { margin-bottom: 12px; }
+        .sidebar-section a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .sidebar-section a:hover { color: #6c5ce7; }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer a { color: #a29bfe; text-decoration: none; margin: 0 10px; }
+        .footer a:hover { color: white; }
+        .footer p { margin-top: 15px; color: #888; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.6rem; }
+            .article-content { padding: 20px; }
+            .article-card h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">FunTest Korea</a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="tests.html">테스트 모음</a>
+                <a href="games.html">게임</a>
+                <a href="blog.html">블로그</a>
+                <a href="about.html">소개</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>FunTest 블로그</h1>
+        <p>심리학, 성격 유형, 두뇌 과학에 관한 흥미롭고 유익한 글들을 읽어보세요.</p>
+    </section>
+
+    <div class="main-container">
+        <!-- 상단 광고 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <div class="article-list">
+            <a href="lotto-guide.html" class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">가이드</span>
+                        <span>2025.01.27</span>
+                    </div>
+                    <h2>로또 완벽 가이드: 규칙부터 당첨 확률까지 모든 것</h2>
+                    <p>로또 6/45의 규칙, 당첨 확률 계산법, 번호 선택 전략, 당첨금 수령 방법까지. 로또에 대해 알아야 할 모든 정보를 한 곳에 정리했습니다. 초보자부터 경험자까지 모두에게 유용한 정보!</p>
+                    <span class="read-more">자세히 읽기 →</span>
+                </div>
+            </a>
+
+            <a href="animal-guide.html" class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">심리</span>
+                        <span>2025.01.27</span>
+                    </div>
+                    <h2>동물상 테스트의 비밀: 강아지상 vs 고양이상 완벽 분석</h2>
+                    <p>강아지상과 고양이상의 특징은 무엇일까요? AI가 얼굴을 분석하는 원리와 정확한 테스트를 위한 팁, 그리고 각 동물상의 성격 특성까지 심층 분석합니다.</p>
+                    <span class="read-more">자세히 읽기 →</span>
+                </div>
+            </a>
+
+            <!-- 중간 광고 -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2267267544441832"
+                     data-ad-slot="auto"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
+            <a href="mbti-test.html" class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">MBTI</span>
+                        <span>2025.01.27</span>
+                    </div>
+                    <h2>MBTI 16가지 성격 유형 완벽 해설</h2>
+                    <p>MBTI는 어떻게 탄생했을까요? E/I, S/N, T/F, J/P 각 지표의 의미와 16가지 성격 유형별 특징, 궁합, 직업 추천까지. MBTI의 모든 것을 알아봅니다.</p>
+                    <span class="read-more">테스트 하러가기 →</span>
+                </div>
+            </a>
+
+            <a href="color-test.html" class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">심리학</span>
+                        <span>2025.01.27</span>
+                    </div>
+                    <h2>색채 심리학: 색깔이 우리 마음에 미치는 영향</h2>
+                    <p>빨강은 왜 열정을 상징할까요? 파랑은 왜 차분함을 주나요? 색채 심리학의 역사와 원리, 그리고 일상에서 색을 활용하는 방법을 알아봅니다.</p>
+                    <span class="read-more">테스트 하러가기 →</span>
+                </div>
+            </a>
+
+            <a href="reaction-test.html" class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">두뇌과학</span>
+                        <span>2025.01.27</span>
+                    </div>
+                    <h2>반응속도의 과학: 당신의 뇌는 얼마나 빠른가?</h2>
+                    <p>인간의 평균 반응속도는 약 250ms입니다. 반응속도에 영향을 미치는 요소들과 향상시키는 방법, 프로게이머들의 비결을 알아봅니다.</p>
+                    <span class="read-more">테스트 하러가기 →</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>카테고리</h3>
+                <ul>
+                    <li><a href="tests.html">심리 테스트</a></li>
+                    <li><a href="mbti-test.html">MBTI</a></li>
+                    <li><a href="games.html">두뇌 게임</a></li>
+                    <li><a href="fortune.html">운세</a></li>
+                    <li><a href="lotto-guide.html">로또 가이드</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>인기 테스트</h3>
+                <ul>
+                    <li><a href="animal-test.html">🐶 동물상 테스트</a></li>
+                    <li><a href="mbti-test.html">🧠 MBTI 테스트</a></li>
+                    <li><a href="color-test.html">🎨 색깔 심리 테스트</a></li>
+                    <li><a href="reaction-test.html">⚡ 반응속도 테스트</a></li>
+                    <li><a href="memory-test.html">🧩 기억력 테스트</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 하단 광고 -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2267267544441832"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <a href="index.html">홈</a>
+            <a href="tests.html">테스트</a>
+            <a href="games.html">게임</a>
+            <a href="about.html">소개</a>
+            <a href="privacy.html">개인정보처리방침</a>
+        </div>
+        <p>© 2025 FunTest Korea. All rights reserved.</p>
+    </footer>
+
+    <script>
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    </script>
+</body>
+</html>
